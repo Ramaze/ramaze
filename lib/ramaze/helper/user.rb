@@ -77,7 +77,7 @@ module Ramaze
     #
     # @example Using a lambda instead of User::authenticate
     #
-    #   # assumes all your controllers inhert from this one
+    #   # assumes all your controllers inherit from this one
     #
     #   class Controller < Ramaze::Controller
     #     trait :user_callback => lambda{|creds|
@@ -87,7 +87,7 @@ module Ramaze
     #
     # @example Using a different model instead of User
     #
-    #   # assumes all your controllers inhert from this one
+    #   # assumes all your controllers inherit from this one
     #
     #   class Controller < Ramaze::Controller
     #     trait :user_model => Account
