@@ -3,7 +3,7 @@ begin
   require "pathname"
   local_ramaze = Pathname.new(__FILE__).expand_path.dirname.join("..", "lib", "ramaze.rb")
   if local_ramaze.file?
-    require local_ramaze
+    require local_ramaze.to_s
   else
     require "ramaze"
   end
