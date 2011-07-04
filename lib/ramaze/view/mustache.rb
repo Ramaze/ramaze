@@ -9,6 +9,12 @@ module Ramaze
     #
     # @see http://github.com/defunkt/mustache
     module Mustache
+      class RamazeContext < ::Mustache::Context
+        def escapeHTML(str)
+          str.escape(:html)
+        end
+      end
+
       def self.call(action, string)
         context, path, ext = class_defined?(action)
 
@@ -22,7 +28,7 @@ module Ramaze
       end
 
       def self.class_defined?(action)
-        return ::Mustache::Context.new(nil), nil, nil unless action.view
+        return RamazeContext.new(nil), nil, nil unless action.view
 
         path = File.dirname(action.view)
 
@@ -33,7 +39,7 @@ module Ramaze
           ::Mustache
         end
 
-        return ::Mustache::Context.new(klass.new), path, View.exts_of(self).first
+        return RamazeContext.new(klass.new), path, View.exts_of(self).first
       end
     end
   end
