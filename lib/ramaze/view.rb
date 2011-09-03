@@ -29,6 +29,6 @@ module Ramaze
     auto_register :Tagz,       :tagz
     auto_register :Tenjin,     :rbhtml, :tenjin
     auto_register :Slippers,   :st
-    auto_register :Mustache,   :mt
+    auto_register :Mustache,   :mustache, :mt
   end # View
 end # Ramaze
