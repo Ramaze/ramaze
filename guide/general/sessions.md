@@ -108,6 +108,11 @@ that point.
 To integrate flash with your application views include {Ramaze::Helper::Flash}
 in your controller and call function ``flashbox`` inside the view.
 
+To change the markup of the flashbox generated HTML, use the following trait
+inside your controller:
+
+    trait :flashbox => "<div class=\"alert-message %key\"><p>%value</p></div>"
+
 Below is an example of how the flash data can be used in a typical Ramaze
 application:
 
