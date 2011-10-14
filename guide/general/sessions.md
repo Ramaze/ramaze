@@ -105,11 +105,15 @@ Note that due to the nature of the flash data you'd have to do this before the
 client requests a new resource as the data will be deleted automatically at
 that point.
 
+To integrate flash with your application views include {Ramaze::Helper::Flash}
+in your controller and call function ``flashbox`` inside the view.
+
 Below is an example of how the flash data can be used in a typical Ramaze
 application:
 
     class Blogs < Ramaze::Controller
       map '/'
+      helper :flash
 
       def index
         flash[:message]
