@@ -8,10 +8,10 @@ module Ramaze
     # case this command tries to find a file of which the name matches the name
     # of the current directory.
     #
-    # == Usage
+    # Usage:
     #
-    #  ramaze stop
-    #  ramaze stop /home/foobar/projects/ramaze/ramaze.pid
+    #    ramaze stop
+    #    ramaze stop /home/foobar/projects/ramaze/ramaze.pid
     #
     # @author Yorick Peterse
     # @author TJ Vanderpoel

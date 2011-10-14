@@ -2,6 +2,7 @@
 # All files in this distribution are subject to the terms of the Ruby license.
 
 module Ramaze
+  ##
   # High performant source reloader
   #
   # This class acts as Rack middleware.
@@ -24,6 +25,7 @@ module Ramaze
   #
   # A number of hooks will be executed during the reload cycle, see
   # Ramaze::ReloaderHooks for more information.
+  #
   class Reloader
     OPTIONS = {
       # At most check every n seconds

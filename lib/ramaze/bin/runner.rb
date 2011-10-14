@@ -16,13 +16,13 @@ module Ramaze
     # Module used for running a particular command based on the specified
     # command line arguments.
     #
-    # == Usage
+    # Usage:
     #
-    #  ramaze --help # Shows a help message
-    #  ramaze -h     # Shows a help message as well
-    #  ramaze -v     # Shows the version of Ramaze
+    #    ramaze --help # Shows a help message
+    #    ramaze -h     # Shows a help message as well
+    #    ramaze -v     # Shows the version of Ramaze
     #
-    #  ramaze [COMMAND] # Runs [COMMAND]
+    #    ramaze [COMMAND] # Runs [COMMAND]
     #
     # @author Yorick Peterse
     # @since  21-07-2011

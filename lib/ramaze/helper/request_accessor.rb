@@ -2,7 +2,9 @@ module Ramaze
   module Helper
     module RequestAccessor
       classes = [Rack::Request, Innate::Request, Ramaze::Request]
-      methods = classes.map{|klass| klass.instance_methods(false) }.flatten.uniq
+      methods = classes.map { |klass|
+        klass.instance_methods(false)
+      }.flatten.uniq
 
       methods.each do |method|
         if method =~ /=/

@@ -19,11 +19,13 @@ module Ramaze
     # Sets any arguments passed as @instance_variables for the current action.
     #
     # Usage:
-    #   request.params # => {'name' => 'manveru', 'q' => 'google', 'lang' => 'de'}
-    #   request.to_ivs(:name, :q)
-    #   @q    # => 'google'
-    #   @name # => 'manveru'
-    #   @lang # => nil
+    #
+    #     request.params # => {'name' => 'manveru', 'q' => 'google', 'lang' => 'de'}
+    #     request.to_ivs(:name, :q)
+    #
+    #     @q    # => 'google'
+    #     @name # => 'manveru'
+    #     @lang # => nil
     #
     def to_instance_variables(*args)
       instance = Current.action.instance
@@ -49,8 +51,7 @@ module Ramaze
     #
     # Usage:
     #
-    #   request.accept_language
-    #   # => ['en-us', 'en', 'de-at', 'de']
+    #     request.accept_language # => ['en-us', 'en', 'de-at', 'de']
     #
     # @param [String #to_s] string the value of HTTP_ACCEPT_LANGUAGE
     # @return [Array] list of locales
@@ -67,14 +68,14 @@ module Ramaze
     ##
     # Transform the HTTP_ACCEPT_LANGUAGE header into an Array with:
     #
-    #   [[lang, weight], [lang, weight], ...]
+    #     [[lang, weight], [lang, weight], ...]
     #
     # This algorithm was taken and improved from the locales library.
     #
     # Usage:
     #
-    #   request.accept_language_with_weight
-    #   # => [["en-us", 1.0], ["en", 0.8], ["de-at", 0.5], ["de", 0.3]]
+    #     request.accept_language_with_weight
+    #     # => [["en-us", 1.0], ["en", 0.8], ["de-at", 0.5], ["de", 0.3]]
     #
     # @param [String #to_s] string the value of HTTP_ACCEPT_LANGUAGE
     # @return [Array] array of [lang, weight] arrays

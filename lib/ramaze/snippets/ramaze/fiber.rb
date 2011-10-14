@@ -21,4 +21,4 @@ module Ramaze
       @state.key?(key)
     end
   end if defined?(::Fiber)
-end
+end # Ramaze

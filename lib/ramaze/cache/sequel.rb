@@ -10,21 +10,33 @@ module Ramaze
     # databases are MySQL, SQLite3 and so on. In order to use this cache you'd
     # have to do the following:
     #
-    #  Ramaze::Cache.options.view = Ramaze::Cache::Sequel.using(
-    #    :connection => Sequel.mysql(
-    #      :host     => 'localhost',
-    #      :user     => 'user',
-    #      :password => 'password',
-    #      :database => 'blog'
-    #    ),
-    #    :table => :blog_sessions
-    #  )
+    #     Ramaze::Cache.options.view = Ramaze::Cache::Sequel.using(
+    #       :connection => Sequel.mysql(
+    #         :host     => 'localhost',
+    #         :user     => 'user',
+    #         :password => 'password',
+    #         :database => 'blog'
+    #       ),
+    #       :table => :blog_sessions
+    #     )
     #
     # If you already have an existing connection you can just pass the object to
     # the :connection option instead of creating a new connection manually.
     #
     # Massive thanks to Lars Olsson for patching the original Sequel cache so
     # that it supports multiple connections and other useful features.
+    #
+    # @example Setting a custom database connection
+    #  Ramaze::Cache.options.names.push(:sequel)
+    #  Ramaze::Cache.options.sequel = Ramaze::Cache::Sequel.using(
+    #    :connection => Sequel.connect(
+    #      :adapter  => 'mysql2',
+    #      :host     => 'localhost',
+    #      :username => 'cache',
+    #      :password => 'cache123',
+    #      :database => 'ramaze_cache'
+    #    )
+    #  )
     #
     # @author Lars Olsson
     # @since  18-04-2011

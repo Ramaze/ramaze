@@ -6,25 +6,26 @@ module Ramaze
     #
     # Usage (trait is optional):
     #
-    #   class RegisterController < Ramaze::Controller
-    #     trait :captcha => lambda{
-    #       ["the answer to everything", "42"]
-    #     }
+    #     class RegisterController < Ramaze::Controller
+    #       trait :captcha => lambda{
+    #         ["the answer to everything", "42"]
+    #       }
     #
-    #     def index
-    #       %(
-    #         <form action="#{r(:answer}">
-    #           What is #{simple_captcha}?
-    #           <input type="text" name="answer" />"
-    #           <input type="submit" />
-    #         </form>
-    #       ).strip
+    #       def index
+    #         %(
+    #           <form action="#{r(:answer}">
+    #             What is #{simple_captcha}?
+    #             <input type="text" name="answer" />"
+    #             <input type="submit" />
+    #           </form>
+    #         ).strip
+    #       end
+    #
+    #       def answer
+    #         check_captcha(request[:answer])
+    #       end
     #     end
     #
-    #     def answer
-    #       check_captcha(request[:answer])
-    #     end
-    #   end
     module SimpleCaptcha
       include Ramaze::Traited
 
@@ -56,5 +57,5 @@ module Ramaze
         answer.to_s.strip == captcha[:answer].to_s
       end
     end # SimpleCaptcha
-  end # Helper 
+  end # Helper
 end # Ramaze

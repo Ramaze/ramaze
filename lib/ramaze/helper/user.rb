@@ -9,7 +9,6 @@ module Ramaze
     # request.env, usually this will involve a request to your database.
     #
     # @example Basic usage with User::authenticate
-    #
     #   # We assume that User::[] will make a query and returns the requested
     #   # User instance. This instance will be wrapped and cached.
     #
@@ -50,7 +49,6 @@ module Ramaze
     # You can however, add your own caching quite easily.
     #
     # @example caching the authentication lookup with memcached
-    #
     #   # Add the name of the cache you are going to use for the authentication
     #   # and set all caches to use memcached
     #
@@ -76,7 +74,6 @@ module Ramaze
     #   end
     #
     # @example Using a lambda instead of User::authenticate
-    #
     #   # assumes all your controllers inherit from this one
     #
     #   class Controller < Ramaze::Controller
@@ -86,7 +83,6 @@ module Ramaze
     #   end
     #
     # @example Using a different model instead of User
-    #
     #   # assumes all your controllers inherit from this one
     #
     #   class Controller < Ramaze::Controller
@@ -94,7 +90,7 @@ module Ramaze
     #   end
     #
     # @author manveru
-    # TODO:  convert the examples into real examples with specs
+    #
     module UserHelper
       # Using this as key in request.env
       RAMAZE_HELPER_USER = 'ramaze.helper.user'.freeze
@@ -103,7 +99,7 @@ module Ramaze
       # Use this method in your application, but do not use it in conditionals
       # as it will never be nil or false.
       #
-      # @return [Ramaze::Helper::User::Wrapper] wrapped return value from 
+      # @return [Ramaze::Helper::User::Wrapper] wrapped return value from
       #  model or callback
       #
       # @api external
@@ -122,7 +118,7 @@ module Ramaze
       ##
       # shortcut for user._login but default argument are request.params
       #
-      # @param [Hash] creds the credentials that will be passed to callback or 
+      # @param [Hash] creds the credentials that will be passed to callback or
       #  model
       # @return [nil Hash] the given creds are returned on successful login
       #
@@ -178,7 +174,7 @@ module Ramaze
         end
 
         ##
-        # @param [Hash] creds this hash will be stored in the session on 
+        # @param [Hash] creds this hash will be stored in the session on
         #  successful login
         # @return [Ramaze::Helper::User::Wrapper] wrapped return value from
         #  model or callback

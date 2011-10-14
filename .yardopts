@@ -1,0 +1,13 @@
+./lib/ramaze/**/*.rb ./lib/ramaze.rb
+-m markdown
+-M rdiscount
+-o ./doc
+-r ./README.md
+--private
+--protected
+--asset ./guide/_static:_static
+--asset ./guide/css/common.css:css/common.css
+-
+./guide/**/*.md
+./guide/GPL_LICENSE
+./guide/RUBY_LICENSE

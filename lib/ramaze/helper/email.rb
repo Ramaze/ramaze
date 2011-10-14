@@ -6,35 +6,37 @@ module Ramaze
     # The Email helper can be used as a simple way of sending Emails from your
     # application. In order to use this helper you first need to load it:
     #
-    #  class Comments < Ramaze::Controller
-    #    helper :email
-    #  end
+    #     class Comments < Ramaze::Controller
+    #       helper :email
+    #     end
     #
     # Sending an Email can be done by calling the method send_email():
     #
-    #  send_email('info@yorickpeterse.com', 'Hello, world!', 'Hello, this is an Email')
+    #     send_email(
+    #       'user@domain.tld',
+    #       'Hello, world!',
+    #       'Hello, this is an Email'
+    #     )
     #
-    # Ramaze will log any errors in case the Email could not be sent so you don't have to
-    # worry about this.
+    # Ramaze will log any errors in case the Email could not be sent so you
+    # don't have to worry about this.
     #
-    # == Options
+    # ## Options
     #
-    # This module can be configured using Innate::Optioned. Say you want to change the
-    # SMTP host you simply need to do the following:
+    # This module can be configured using Innate::Optioned. Say you want to
+    # change the SMTP host you simply need to do the following:
     #
-    #  Ramaze::Helper::Email.options.host = 'mail.google.com'
+    #     Ramaze::Helper::Email.options.host = 'mail.google.com'
     #
-    # Various other options are available, for a full list of these options run the
-    # following in an IRB session:
+    # Various other options are available, for a full list of these options run
+    # the following in an IRB session:
     #
-    #  puts Ramaze::Helper::Email.options
+    #     puts Ramaze::Helper::Email.options
     #
-    # By default this helper uses \r\n for newlines, this can be changed as following:
+    # By default this helper uses ``\r\n`` for newlines, this can be changed as
+    # following:
     #
-    #  Ramaze::Helper::Email.options.newline = "\n"
-    #
-    # It's important that this setting matches the settings of your SMTP server as
-    # otherwise you (usually) won't be able to send any Emails.
+    #     Ramaze::Helper::Email.options.newline = "\n"
     #
     # @author Yorick Peterse
     # @author Michael Fellinger
@@ -59,12 +61,12 @@ module Ramaze
           "<" + Time.now.to_i.to_s + "@" + Ramaze::Helper::Email.options.helo_domain + ">"
         }
       end
-      
+
       ##
       # Sends an Email over SMTP.
       #
       # @example
-      #  send_email('info@yorickpeterse.com', 'Hello, world!', 'Hello, this is an Email')
+      #  send_email('user@domain.tld', 'Hello, world!', 'Hello, this is an Email')
       #
       # @author Yorick Peterse
       # @author Michael Fellinger
@@ -79,7 +81,7 @@ module Ramaze
         id      = Email.options.generator.call
 
         # Generate the body of the Email
-        email   = [
+        email = [
           "From: #{sender}", "To: <#{recipient}>", "Date: #{Time.now.rfc2822}",
           "Subject: #{subject}", "Message-Id: #{id}", '', message
         ].join(Email.options.newline)
@@ -93,11 +95,20 @@ module Ramaze
 
         begin
           Net::SMTP.start(*email_options) do |smtp|
-            smtp.send_message(email, Email.options.sender, [recipient, *Email.options.bcc])
-            Ramaze::Log.info("Email sent to #{recipient} with subject \"#{subject}\"")
+            smtp.send_message(
+              email,
+              Email.options.sender,
+              [recipient, *Email.options.bcc]
+            )
+
+            Ramaze::Log.info(
+              "Email sent to #{recipient} with subject \"#{subject}\""
+            )
           end
         rescue => e
-          Ramaze::Log.error("Failed to send an Email to #{recipient}: #{e.inspect}")
+          Ramaze::Log.error(
+            "Failed to send an Email to #{recipient}: #{e.inspect}"
+          )
         end
       end
     end # Email

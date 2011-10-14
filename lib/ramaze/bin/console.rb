@@ -8,10 +8,10 @@ module Ramaze
     # Allows the user to enter an IRB like session that takes advantage of
     # everything provided by Ramaze.
     #
-    # == Usage
+    # Usage:
     #
-    #  ramaze console
-    #  ramaze console /path/to/app/start.rb
+    #    ramaze console
+    #    ramaze console /path/to/app/start.rb
     #
     # @author Yorick Peterse
     # @since  21-07-2011

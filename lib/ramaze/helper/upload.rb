@@ -5,8 +5,7 @@ module Ramaze
     # by Rack, but this helper adds some conveniance methods for handling
     # and saving the uploaded files.
     #
-    # == Example
-    #
+    # @example
     #   class MyController < Ramaze::Controller
     #     # Use upload helper
     #     helper :upload
@@ -234,7 +233,6 @@ module Ramaze
         # for specified actions in the controller.
         #
         # @example
-        #
         #   class MyController < Ramaze::Controller
         #
         #     # Use upload helper
@@ -272,7 +270,6 @@ module Ramaze
         # Sets options for file uploads in the controller.
         #
         # @example
-        #
         #   # This controller will handle all file uploads automatically.
         #   # All uploaded files are saved automatically in '/uploads/myapp'
         #   # and old files are overwritten.

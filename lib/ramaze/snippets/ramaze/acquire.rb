@@ -5,22 +5,23 @@ module Ramaze
   # Require all .rb and .so files on the given globs, utilizes Dir::[].
   #
   # Examples:
-  #   # Given following directory structure:
-  #   # src/foo.rb
-  #   # src/bar.so
-  #   # src/foo.yaml
-  #   # src/foobar/baz.rb
-  #   # src/foobar/README
   #
-  #   # requires all files in 'src':
-  #   Ramaze.acquire 'src/*'
+  #     # Given following directory structure:
+  #     # src/foo.rb
+  #     # src/bar.so
+  #     # src/foo.yaml
+  #     # src/foobar/baz.rb
+  #     # src/foobar/README
   #
-  #   # requires all files in 'src' recursive:
-  #   Ramaze.acquire 'src/**/*'
+  #     # requires all files in 'src':
+  #     Ramaze.acquire 'src/*'
   #
-  #   # require 'src/foo.rb' and 'src/bar.so' and 'src/foobar/baz.rb'
-  #   Ramaze.acquire 'src/*', 'src/foobar/*'
-
+  #     # requires all files in 'src' recursive:
+  #     Ramaze.acquire 'src/**/*'
+  #
+  #     # require 'src/foo.rb' and 'src/bar.so' and 'src/foobar/baz.rb'
+  #     Ramaze.acquire 'src/*', 'src/foobar/*'
+  #
   def self.acquire(*globs)
     globs.flatten.each do |glob|
       Dir[glob].each do |file|
@@ -28,4 +29,4 @@ module Ramaze
       end
     end
   end
-end
+end # Ramaze

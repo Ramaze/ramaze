@@ -8,7 +8,7 @@ module Ramaze
     ##
     # Allows you to use some shortcuts for Erector in your Controller.
     #
-    # use this inside your controller to directly build Erector 
+    # use this inside your controller to directly build Erector
     # Refer to the Erector-documentation and testsuite for more examples.
     #
     # @example
@@ -26,19 +26,18 @@ module Ramaze
         # Method that generates a XHTML 1.0 Strict doctype.
         #
         # @example
-        #
         #   strict_html do
         #     head do
         #       title "Ramaze Rocks!"
         #     end
         #     body
         #       div do
-        #         
+        #
         #       end
         #     end
         #   end
         #
-        # @param [Hash] args Hash containing extra options such as the xml:lang 
+        # @param [Hash] args Hash containing extra options such as the xml:lang
         #  and xmlns attribute.
         # @param [Block] block Block that contains the inner data of the <html>
         #  element.
@@ -53,7 +52,6 @@ module Ramaze
         # Generate a Javascript tag.
         #
         # @example
-        # 
         #   js 'javascript/jquery.js'
         #
         # @param [String] src The full or relative path to the Javascript file.
@@ -66,13 +64,12 @@ module Ramaze
         # Generate a pair of conditional tags for a specific browser.
         #
         # @example
-        #
         #   ie_if 'IE' do
         #     ......
         #   end
         #
         # @param [String] expr The if expression, such as 'IE' or 'lte IE7'.
-        # @param [block] block Block that contains the data that needs to be 
+        # @param [block] block Block that contains the data that needs to be
         #  loaded for the specified browser.
         #
         def ie_if(expr, &block)
@@ -94,19 +91,18 @@ module Ramaze
         # Generate a stylesheet tag.
         #
         # @example
-        #
         #   css 'css/reset.css', :media => 'print'
         #
-        # @param [String] href The path (either absolute or relative) to the CSS 
+        # @param [String] href The path (either absolute or relative) to the CSS
         #  file.
-        # @param [Hash] args A hash containing additional arguments to add to 
+        # @param [Hash] args A hash containing additional arguments to add to
         #  the CSS tag.
         #
         def css(href, args = {})
           attrs = {
-            :rel => "stylesheet", 
-            :href => href, 
-            :type => "text/css" 
+            :rel => "stylesheet",
+            :href => href,
+            :type => "text/css"
           }.merge(args)
 
           link attrs

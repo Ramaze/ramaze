@@ -13,7 +13,7 @@ module Ramaze
     # Cache driver for the Memcache storage engine. Memcache is a key/value
     # store that's extremely useful for caching data such as views or API
     # responses. More inforamtion about Memcache can be found on it's website:
-    # http://memcached.org/.
+    # <http://memcached.org/>.
     #
     # Note that this cache driver requires the Dalli gem rather than Memcache
     # Client. The reason for this is that the Memcache client hasn't been
@@ -25,9 +25,26 @@ module Ramaze
     # This driver works similar to Ramaze::Cache::Sequel in that it allows you
     # to specify instance specific options uisng the using() method:
     #
-    #  Ramaze::Cache.options.session = Ramaze::Cache::Memcache.using(:compression => false)
+    #     Ramaze::Cache.options.session = Ramaze::Cache::MemCache.using(
+    #       :compression => false
+    #     )
     #
     # All options sent to the using() method will be sent to Dalli.
+    #
+    # @example Using the default options
+    #  Ramaze::Cache.options.view = Ramaze::Cache::MemCache
+    #  Ramaze.setup_dependencies
+    #
+    #  Ramaze::Cache.view.store(:my_view, 'Hello Ramaze')
+    #
+    # @example Using custom options
+    #  Ramaze::Cache.options.view = Ramaze::Cache::MemCache.using(
+    #    :compression => false,
+    #    :servers     => ['localhost:11211', 'localhost:112112']
+    #  )
+    #
+    #  Ramaze.setup_dependencies
+    #  Ramaze::Cache.view.store(:my_view, 'Hello Ramaze')
     #
     # @author Yorick Peterse
     # @since  04-05-2011
@@ -74,7 +91,7 @@ module Ramaze
         #    :compression => false,
         #    :username    => 'ramaze',
         #    :password    => 'ramaze123',
-        #    :servers     => ['othermachine.com:12345'] # Overwrites the default server
+        #    :servers     => ['othermachine.com:12345']
         #  )
         #
         # @author Yorick Peterse

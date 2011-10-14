@@ -11,22 +11,22 @@ module Ramaze
     # specify a number of layouts and the methods for which these layouts should
     # be used.
     #
-    # == Examples
+    # ## Examples
     #
     # The most basic example is simply setting a layout as you would do with the
     # layout() method:
     #
-    #  set_layout 'default'
+    #     set_layout 'default'
     #
     # This of course is very boring, time to add some more spices to our code:
     #
-    #  set_layout 'default' => [:index]
+    #     set_layout 'default' => [:index]
     #
     # Woah! What just happened? It's quite easy actually, we merely defined that
     # the layout called "default" should be used for the index method *only*.
     # Pretty sweet huh? It gets even better:
     #
-    #  set_layout 'default' => [:index, :edit], 'alternative' => [:add, :process]
+    #     set_layout 'default' => [:index, :edit], 'alternative' => [:add, :process]
     #
     # A few things changed. First of all there are now two key/value groups.
     # Each group defines a layout (the key) and a set of methods (the value) for

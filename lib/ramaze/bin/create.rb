@@ -7,9 +7,9 @@ module Ramaze
     # Simple command that allows users to easily create a new application based
     # on the prototype that ships with Ramaze.
     #
-    # == Usage
+    # Usage:
     #
-    #  ramaze create blog
+    #    ramaze create blog
     #
     # @author Yorick Peterse
     # @since  21-07-2011

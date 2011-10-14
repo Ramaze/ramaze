@@ -30,7 +30,8 @@ module Ramaze
     {:name => 'tagz'        , :version => ['>= 9.0.0']},
     {:name => 'tenjin'      , :version => ['>= 0.6.1']},
     {:name => 'yard'        , :version => ['>= 0.7.2']},
-    {:name => 'redis'       , :version => ['>= 2.2.2']}
+    {:name => 'redis'       , :version => ['>= 2.2.2']},
+    {:name => 'rdiscount'   , :version => ['>= 1.6.8']}
   ]
 
   if !RUBY_PLATFORM.include?('darwin')

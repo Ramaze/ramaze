@@ -25,7 +25,6 @@ module Ramaze
           "\e[#{value}m" + self + "\e[0m"
         end
       end
-    end
-
-  end
-end
+    end # String
+  end # CoreExtensions
+end # Ramaze

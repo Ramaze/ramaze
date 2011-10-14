@@ -4,9 +4,13 @@
 module Ramaze
   class Cache
     ##
-    # Cache class that uses Ramaze::LRUHash as a storage engine. This cache has
-    # the advantage that unlike Innate::Cache::Memory it does not leak memory
-    # over time.
+    # Cache class that uses {Ramaze::LRUHash} as a storage engine. This cache
+    # has the advantage that unlike Innate::Cache::Memory it does not leak
+    # memory over time when using the cache for sessions.
+    #
+    # @example
+    #  Ramaze::Cache.options.session = Ramaze::Cache::LRU
+    #  Ramaze.setup_dependencies
     #
     # @author Michael Fellinger
     # @since  17-07-2009
@@ -28,7 +32,7 @@ module Ramaze
 
       ##
       # Prepares the cache by creating a new instance of Ramaze::LRUHash using
-      # the options set in Ramaze::Cache::LRU::OPTIONS.
+      # the options set in {Ramaze::Cache::LRU::OPTIONS}.
       #
       # @author Michael Fellinger
       # @since  17-07-2009

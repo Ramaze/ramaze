@@ -2,10 +2,14 @@ require 'benchmark'
 
 module Ramaze
   module Helper
-
-    # Little helper to give you a hand when benching parts of actions
+    ##
+    # The Benchmark helper is a simple helper that can be used to benchmark
+    # certain blocks of code by wrapping them in a block. This can be useful if
+    # you want to see how long a certain query takes or how long it takes to
+    # create a new user.
+    #
     module Bench
-
+      ##
       # Will first run an empty loop to determine the overhead it imposes, then
       # goes on to yield your block +iterations+ times.
       #
@@ -15,27 +19,33 @@ module Ramaze
       #
       # Example:
       #
-      #   class MainController < Ramaze::Controller
-      #     def index
-      #       @users = bench{ User.all }
-      #       @tags = bench{ Article.tags }
+      #     class MainController < Ramaze::Controller
+      #       def index
+      #         @users = bench{ User.all }
+      #         @tags = bench{ Article.tags }
+      #       end
       #     end
-      #   end
       #
       # This will show something like following in your log:
-      # [..] INFO   Bench ./start.rb:3:in `index': 0.121163845062256
-      # [..] INFO   Bench ./start.rb:4:in `index': 2.234987235098341
+      #
+      #     [..] INFO   Bench ./start.rb:3:in `index': 0.121163845062256
+      #     [..] INFO   Bench ./start.rb:4:in `index': 2.234987235098341
       #
       # So now we know that the Article.tags call takes the most time and
       # should be improved.
+      #
+      # @param  [Fixnum] iterations The amount of iterations to run.
+      # @return [Mixed]
+      #
       def bench(iterations = 1)
         result = nil
-        from = caller[0]
-        delta = Benchmark.realtime{ iterations.times{ nil }}
-        taken = Benchmark.realtime{ iterations.times{ result = yield }}
+        from   = caller[0]
+        delta  = Benchmark.realtime{ iterations.times{ nil }}
+        taken  = Benchmark.realtime{ iterations.times{ result = yield }}
+
         Log.info "Bench #{from}: #{taken - delta}"
         return result
       end
-    end
-  end
-end
+    end # Bench
+  end # Helper
+end # Ramaze

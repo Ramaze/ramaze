@@ -1,3 +1,284 @@
+[be1b000 | Thu Oct 13 17:24:31 UTC 2011] Yorick Peterse <yorickpeterse@gmail.com>
+
+  * Updated the YARD task to include Innate.
+
+    The Rake task ``yard`` can now optionally include Innate when a valid path is
+    specified.
+    
+    Signed-off-by: Yorick Peterse <yorickpeterse@gmail.com>
+
+[2dac2cd | Thu Oct 13 17:05:24 UTC 2011] Yorick Peterse <yorickpeterse@gmail.com>
+
+  * Cache examples and documented RotatingInformer.
+
+    Signed-off-by: Yorick Peterse <yorickpeterse@gmail.com>
+
+[a8174d2 | Thu Oct 13 16:23:15 UTC 2011] Yorick Peterse <yorickpeterse@gmail.com>
+
+  * Autoload Growl/RotatinInformer
+
+    Signed-off-by: Yorick Peterse <yorickpeterse@gmail.com>
+
+[8853778 | Thu Oct 13 13:33:29 UTC 2011] Yorick Peterse <yorickpeterse@gmail.com>
+
+  * Documented logging and creating custom loggers
+
+    Signed-off-by: Yorick Peterse <yorickpeterse@gmail.com>
+
+[e9567e7 | Thu Oct 13 10:34:02 UTC 2011] Yorick Peterse <yorickpeterse@gmail.com>
+
+  * Updated the Special thanks and fixed a typo.
+
+    I added Loren Segal to the Special Thanks page, without him we wouldn't be using
+    YARD. Also fixed a spelling error in the README reported by huma.
+    
+    Signed-off-by: Yorick Peterse <yorickpeterse@gmail.com>
+
+[3228a6d | Thu Oct 13 09:00:10 UTC 2011] Yorick Peterse <yorickpeterse@gmail.com>
+
+  * Removed the old README
+
+    Signed-off-by: Yorick Peterse <yorickpeterse@gmail.com>
+
+[830d599 | Thu Oct 13 08:57:14 UTC 2011] Yorick Peterse <yorickpeterse@gmail.com>
+
+  * Moved some chapters around.
+
+    The chapters on helpers and logging data have been moved to their own file
+    instead of being displayed in the README. Next up is writing the actual
+    documentation on logging data.
+    
+    Signed-off-by: Yorick Peterse <yorickpeterse@gmail.com>
+
+[4c8d0d2 | Wed Oct 12 22:48:02 UTC 2011] Yorick Peterse <yorickpeterse@gmail.com>
+
+  * Initial setup for the YARD based user guide.
+
+    Signed-off-by: Yorick Peterse <yorickpeterse@gmail.com>
+
+[8ee60cd | Mon Oct 10 19:20:12 UTC 2011] Yorick Peterse <yorickpeterse@gmail.com>
+
+  * Fixed an HTML validation error.
+
+    The index.html view in the prototype contained a link that wasn't formatted
+    according to the HTML specification. Thanks to "stu314" from the IRC channel for
+    reporting it and submitting the patch.
+    
+    Signed-off-by: Yorick Peterse <yorickpeterse@gmail.com>
+
+[7973c39 | Sun Oct 09 11:37:25 UTC 2011] Yorick Peterse <yorickpeterse@gmail.com>
+
+  * Docs/style changes for the Redis cache.
+
+    The Redis cache has been documented and I've made some slight modifications to
+    it so that it works similar to the Sequel/Memcache cache in terms of setting
+    options. I've also modified the Sequel, Memcache and Redis cache classes to
+    use Ramaze.setup() for their dependencies, this should make it a bit easier for
+    users to use these caches.
+    
+    Signed-off-by: Yorick Peterse <yorickpeterse@gmail.com>
+
+[b9f5501 | Sun Oct 09 08:55:58 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
+
+  * Add redis cache
+
+[a077d54 | Tue Sep 27 21:25:14 UTC 2011] Yorick Peterse <yorickpeterse@gmail.com>
+
+  * Removed the spec/ directory.
+
+    Signed-off-by: Yorick Peterse <yorickpeterse@gmail.com>
+
+[e5efe43 | Tue Sep 27 21:23:51 UTC 2011] Yorick Peterse <yorickpeterse@gmail.com>
+
+  * Renamed Post.rb to post.rb.
+
+    Signed-off-by: Yorick Peterse <yorickpeterse@gmail.com>
+
+[a127ef0 | Tue Sep 27 21:23:34 UTC 2011] Yorick Peterse <yorickpeterse@gmail.com>
+
+  * Silly OS X and it's file casing.
+
+    Next commit will contain the correct name.
+    
+    Signed-off-by: Yorick Peterse <yorickpeterse@gmail.com>
+
+[dc2770f | Tue Sep 27 21:18:37 UTC 2011] Yorick Peterse <yorickpeterse@gmail.com>
+
+  * Boom! A new blog example application.
+
+    Signed-off-by: Yorick Peterse <yorickpeterse@gmail.com>
+
+[1cd6174 | Mon Sep 26 21:47:10 UTC 2011] Yorick Peterse <yorickpeterse@gmail.com>
+
+  * Started re-writing the blog example.
+
+    Signed-off-by: Yorick Peterse <yorickpeterse@gmail.com>
+
+[02c442e | Sat Sep 03 17:43:40 UTC 2011] Francesc Esplugas <francesc.esplugas@gmail.com>
+
+  * Detect also :mustache extension when using Ramaze::View::Mustache.
+
+[68fdea6 | Fri Sep 02 16:54:12 UTC 2011] YorickPeterse <yorickpeterse@gmail.com>
+
+  * Modified the Upload helper so that it's less restrictive regarding various types.
+
+[506e9d9 | Thu Sep 01 22:08:09 UTC 2011] YorickPeterse <yorickpeterse@gmail.com>
+
+  * Ditched `rake rcov` and told Dalli to bother somebody else with it's logger.
+
+[61760cd | Thu Sep 01 16:07:02 UTC 2011] YorickPeterse <yorickpeterse@gmail.com>
+
+  * Deprecated ramaze/spec as was supposed to happen two years ago.
+
+    The code in it has been moved to ramaze/spec/bacon. ramaze/spec now always
+    generates a warning until I'm 100% sure it's not used by Ramaze itself anymore.
+
+[18bf4b5 | Thu Sep 01 15:12:43 UTC 2011] YorickPeterse <yorickpeterse@gmail.com>
+
+  * rake bacon now shows the spec paths relative to the project root.
+
+[27a3245 | Thu Sep 01 10:49:17 UTC 2011] YorickPeterse <yorickpeterse@gmail.com>
+
+  * Added more specs for the Upload helper.
+
+[342ea4d | Wed Aug 31 23:10:49 UTC 2011] YorickPeterse <yorickpeterse@gmail.com>
+
+  * Started writing a set of specifications for the Upload helper.
+
+[703a69c | Wed Aug 31 22:15:33 UTC 2011] YorickPeterse <yorickpeterse@gmail.com>
+
+  * Moved some of the docs of the Upload helper to the module declaration instead of
+
+
+
+[31550b9 | Wed Aug 31 21:54:18 UTC 2011] YorickPeterse <yorickpeterse@gmail.com>
+
+  * Cleaned up some of the code in the Upload helper and removed the need for a
+
+
+
+[93850ae | Mon Aug 22 11:48:54 UTC 2011] Lars Olsson <lasso@lassoweb.se>
+
+  * UploadHelper: Doh! Don't exit function prematurely. Fixes bug introduced by 88ded566950e15a13fb0526e9cb1c8544b91aa2f.
+
+[c8a71ac | Mon Aug 22 11:19:27 UTC 2011] Lars Olsson <lasso@lassoweb.se>
+
+  * UploadHelper: Doc fixes
+
+[88ded56 | Sun Aug 21 10:40:11 UTC 2011] Lars Olsson <lasso@lassoweb.se>
+
+  * UploadHelper: Document using YARD instead of RDoc, let get_uploaded_files return the number of converted file uploads
+
+[2ba5aa4 | Sat Aug 20 09:44:09 UTC 2011] YorickPeterse <yorickpeterse@gmail.com>
+
+  * Updated Ramaze.setup so that it works with recent Rubygems versions and
+
+    
+    Most of the credits for fixing Ramaze.setup go to @injekt as he initially
+    submitted the code, I just made it work with previous Rubygems installations.
+
+[ebb6a3f | Fri Aug 19 20:44:36 UTC 2011] Lars Olsson <lasso@lassoweb.se>
+
+  * UploadHelper: Minor doc fixes
+
+[701f75c | Thu Aug 18 20:48:50 UTC 2011] Lars Olsson <lasso@lassoweb.se>
+
+  * UploadHelper: Handle array parameters, add more docs
+
+[51e88dc | Thu Aug 18 17:07:12 UTC 2011] Lars Olsson <lasso@lassoweb.se>
+
+  * UploadHelper: Allow proc in addition to string for default_upload_dir parameter
+
+[6b8c45a | Tue Aug 16 10:18:47 UTC 2011] Lars Olsson <lasso@lassoweb.se>
+
+  * Fixed minor bugs, added lots of docs for UploadHelper
+
+[e58d99a | Mon Aug 15 14:46:22 UTC 2011] Lars Olsson <lasso@lassoweb.se>
+
+  * Be compatible with ruby 1.8
+
+[7bbb724 | Mon Aug 15 09:49:13 UTC 2011] Lars Olsson <lasso@lassoweb.se>
+
+  * Minor refactoring of save method, add accessors and saved? method to Ramaze::UploadedFile class
+
+[3b938b8 | Sun Aug 14 17:40:33 UTC 2011] Lars Olsson <lasso@lassoweb.se>
+
+  * Use copy_stream method for saving file, add unlinking option for tempfile, reformat source code to keep line length within reasonable limits
+
+[05cc35a | Wed Aug 10 06:52:17 UTC 2011] YorickPeterse <yorickpeterse@gmail.com>
+
+  * Modified the layout helper so that it no longer overwrites layout().
+
+    Do note that this change has a minor limitation: it will only create a "backup"
+    of the existing layout (located in a trait called :layout) the first time
+    set_layout() is called. After this it will just use the one that was set in the
+    first call.
+    
+    This means that you can do the following and it would just work fine:
+    
+        layout     :default
+        set_layout :alternative => [:method_1]
+    
+    This would result in the layout "default" being use by default and the layout
+    "alternative" being used for method_1(). Before this commit this would result
+    in all methods except method_1() being rendered *without* a layout at all.
+    
+    In the following example both calls to set_layout() will use the layout set by
+    layout() as a backup, the second one will not overwrite it but instead will also
+    use the backup:
+    
+        layout     :default
+        set_layout :alternative => [:method_1]
+        set_layout :another_one => [:method_2]
+    
+    To cut a long story short, existing layouts are now properly used as a fallback
+    in case set_layout() doesn't result in any matching layouts for a particular
+    method.
+
+[14d277d | Tue Aug 09 07:50:12 UTC 2011] YorickPeterse <yorickpeterse@gmail.com>
+
+  * Removed ramaze/rest. It was extremely crippled and didn't work properly anyway.
+
+    I tried coming up with a nice helper to replace this but I eventually decided
+    not to include it since there are multiple ways of doing it.
+
+[7503d78 | Mon Aug 08 18:28:04 UTC 2011] Lars Olsson <lasso@lassoweb.se>
+
+  * Implement save method, use traits instead of constants, add options for default upload dir, autosave and overwriting existing files.
+
+[9dda5cf | Mon Aug 08 07:10:36 UTC 2011] Lars Olsson <lasso@lassoweb.se>
+
+  * Remove instance variable, use singleton method to keep track of uploaded files instead
+
+[9f7b920 | Fri Aug 05 10:07:01 UTC 2011] Lars Olsson <lasso@lassoweb.se>
+
+  * Add some docs, fix indentation
+
+[5c693d9 | Thu Aug 04 21:52:46 UTC 2011] Lars Olsson <lasso@lassoweb.se>
+
+  * Initial support for upload helper
+
+[558afb7 | Wed Jul 27 20:23:23 UTC 2011] YorickPeterse <yorickpeterse@gmail.com>
+
+  * Updated the config.ru for the prototype so that it respects your root directories.
+
+[b82571a | Tue Jul 26 07:24:58 UTC 2011] YorickPeterse <yorickpeterse@gmail.com>
+
+  * BlueForm#input_checkbox now takes a hash, array or string as the checked value.
+
+    Sadly I only discovered this this morning so this will have to wait until the
+    next release. This small change makes it possible to do the following:
+    
+        f.input_checkbox(
+          'Language', :language, ['ruby'], :values => ['ruby', 'python']
+        )
+    
+    Previously you could only check a single checkbox (and radio button).
+
+[8cd0b4b | Mon Jul 25 20:06:07 UTC 2011] YorickPeterse <yorickpeterse@gmail.com>
+
+  * Release 2011.07.25.
+
 [cfc6c2b | Mon Jul 25 17:56:49 UTC 2011] YorickPeterse <yorickpeterse@gmail.com>
 
   * Updated the changelog and the list of contributors.

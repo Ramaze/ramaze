@@ -3,15 +3,16 @@
 
 module Ramaze
   module Helper
-
+    ##
     # Caching of simple objects and whole action responses.
+    #
     module Cache
-
       # Setup needed traits, add the singleton methods and add the caches used
       # by this helper.
       #
       # @param [Class] into Class that this Module is included into
       # @author manveru
+      #
       def self.included(into)
         into.extend(SingletonMethods)
         into.add_action_wrapper(6.0, :cache_wrap)
@@ -19,11 +20,13 @@ module Ramaze
         Ramaze::Cache.add(:action, :cache_helper_value)
       end
 
+      ##
       # @param [Action] action The currently wrapped action
       # @yield The next block in wrap_action_call
       # @return [String] the response body
       # @see Innate::Node#wrap_action_call
       # @author manveru
+      #
       def cache_wrap(action)
         cache = Innate::Cache.action
 
@@ -58,6 +61,7 @@ module Ramaze
         yield
       end
 
+      ##
       # This method is used to access Ramaze::Cache.cache_helper_value.
       # It provides an easy way to cache long-running computations, gathering
       # external resources like RSS feeds or DB queries that are the same for
@@ -78,6 +82,7 @@ module Ramaze
       # @return [Object] The cache wrapper assigned for :cache_helper_value
       # @see Innate::Cache
       # @author manveru
+      #
       def cache_value(key = nil, options = {})
         cache = Ramaze::Cache.cache_helper_value
 
@@ -96,7 +101,6 @@ module Ramaze
         # This method allows you to cache whole actions.
         #
         # @example Basic usage
-        #
         #   class Foo < Ramaze::Controller
         #     helper :cache
         #     cache_action :method => :bar
@@ -112,6 +116,6 @@ module Ramaze
           trait[:cache_action] << hash
         end
       end
-    end
-  end
-end
+    end # Cache
+  end # Helper
+end # Ramaze

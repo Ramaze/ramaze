@@ -1,13 +1,10 @@
-    Copyright (c) 2009 - 2011 Michael Fellinger m.fellinger@gmail.com
-    All files in this distribution are subject to the terms of the Ruby license.
+# Ramaze
 
-# About Ramaze
+Ramaze is a very simple and straight-forward web-framework. The philosophy of
+it could be expressed in a mix of KISS and POLS, trying to make simple things
+simple and complex things possible.
 
-Ramaze is a very simple and straight-forward web-framework.
-The philosophy of it could be expressed in a mix of KISS and POLS, trying to
-make simple things simple and complex things possible.
-
-This of course is nothing new to anyone who knows some ruby, but is often
+This of course is nothing new to anyone who knows some Ruby, but is often
 forgotten in a chase for new functionality and features. Ramaze only tries to
 give you the ultimate tools, but you have to use them yourself to achieve
 perfect custom-tailored results.
@@ -18,366 +15,110 @@ understanding after the first glance, but also to make it as simple as possible
 to reuse parts of the code.
 
 The original purpose of Ramaze was to act as a kind of framework to build
-web-frameworks, this was made obsolete by the introduction of rack, which
+web-frameworks, this was made obsolete by the introduction of Rack, which
 provides this feature at a better level without trying to enforce any structural
 layout of the resulting framework.
 
+Today Ramaze serves as a framework for those who want to develop their projects
+in their own way rather than being forced to work in a way that the framework
+(and it's creators) define. It tries not to make any assumptions and more
+importantly: it puts you back in control of your code. An example of this is the
+default file structure of new Ramaze projects.  Out of the box a new project
+uses the MVC pattern. The cool thing about Ramaze however is that you're not
+forced to use this pattern. If you prever HMVC, PAC or something else you can
+simply apply it. Another example is the use of a database toolkit. Ramaze does
+not ship with one for a very simple reason: nobody likes the same toolkit. Some
+people prefer Sequel, others use Datamapper. With Ramaze you can use any tool
+you like.
+
+Installing Ramaze is as easy as the following command:
+
+    $ gem install ramaze
+
+For more information see the chapter {file:installation Installation}.
+
+Ramaze is dual licensed under the GPL/Ruby license and is copyrighted 2009 -
+2011 by Michael Fellinger (m.fellinger@gmail.com). A copy of the Ruby license
+can be found in the file "guide/RUBY_LICENSE", a copy of the GPL license can be
+found in the file "guide/GPL_LICENSE". Both these files can be displayed by
+clicking the "Files" button at the top right.
+
+<div class="note todo">
+    <p>
+        <strong>Note:</strong> if you spot any mistakes made such as spelling
+        errors or links not working feel free to report them on the mailing
+        list, in the IRC channel or by submitting a bug at the
+        <a href="https://github.com/ramaze/ramaze/issues">bugtracker</a>.
+    </p>
+</div>
+
 ## Quick Example
 
-While Ramaze applications are usually spread across multiple directories for controllers,
-models and views one can quite easily create a very basic application in just a single file:
+While Ramaze applications are usually spread across multiple directories for
+controllers, models and views one can quite easily create a very basic
+application in just a single file:
 
     require 'ramaze'
-    
+
     class MyController < Ramaze::Controller
       map '/'
-      
+
       def index
-        "Hello, Ramaze!"
+        return "Hello, Ramaze!"
       end
-    end  
-    
+    end
+
     Ramaze.start
 
-Once this is saved in a file (you can also run this from IRB) simply execute it using the
-Ruby binary:
+Once this is saved in a file (you can also run this from IRB) simply execute it
+using the Ruby binary:
 
     $ ruby hello_ramaze.rb
 
 This starts a WEBRick server listening on localhost:7000.
 
-## Features Overview
-
-Ramaze offers following features at the moment:
-
-### Adapters
-
-Ramaze takes advantage of the Rack library to provide a common way of
-handling different ways to serve its content. A few of the supported Rack adapters are:
-  
-* Mongrel
-* WEBrick
-* FCGI
-* LiteSpeed
-* Thin
-
-### Templates
-
-Ramaze can in theory support any template engine as long as there's an adapter for it. To
-make your life easier Ramaze ships with adapters for the following template engines:
-
-* [Erubis](http://rubyforge.org/projects/erubis)
-* Etanni (small engine created for Ramaze)
-* [Erector](http://erector.rubyforge.org/)
-* [Haml](http://haml.hamptoncatlin.com/)
-* [Liquid](http://home.leetsoft.com/liquid)
-* [Markaby](http://code.whytheluckystiff.net/markaby/)
-* [Remarkably](http://rubyforge.org/projects/remarkably)
-* [Sass](http://haml.hamptoncatlin.com/docs/sass)
-
-### Cache
-
-* Hash
-* YAML::Store
-* LocalMemCache
-* MemCache
-* Sequel
-
-### Helpers
-
-Helpers are modules that can be included in your controllers or other classes to make it easier
-to work with certain classes or systems without having to write the same boilerplate code over
-and over again. Ramaze has a lot of helpers, the following helpers are loaded by default:
-
-* CGI: Shortcuts for escape/unescape of the CGI module.
-* File: Helps you serving files from your Controller.
-* Flash: Store a couple of values for one request associated with a session.
-* Link: Easier linking to the various parts of your applications Controllers and Actions.
-* Redirect: Easy redirection.
-
-Other helpers worth mentioning are:
-
-* CSRF helper: protect your forms from CSRF attacks using a single method.
-* BlueForm: makes working with forms fun again.
-* User: easy authentication using a database model.
-* Identity: makes it easy to work with OpenID systems.
-
-In total Ramaze itself has 29 helpers!
-
-## Basic Principles
-
-There are some basic principles that Ramaze tries to follow:
-
-* KISS (Keep It Super Simple)
-
-  Ramaze doesn't introduce any major change of paradigm for everyone familiar
-  with Ruby and the basics of Web-development.
-
-* POLS (Principle Of Least Surprise)
-
-  Ramaze tries to be intuitive and easy to learn. Most functionality is built in
-  a way to help, not to obfuscate or confuse.
-
-* Modular design
-
-  Use what you want and how you want it.
-
-  Through Ruby Ramaze provides one of the most powerful programming-languages
-  available, giving you full control over your system.
-
-  Even the most essential parts of Ramaze can easily be replaced and/or modified
-  without losing the advantage of the whole framework.
-
-* Minimal dependencies
-
-  Nothing besides Ruby is required for the basic features.
-
-  Of course you can take advantage of several wonderful libraries, but Ramaze is
-  built in a way to be run on any basic setup.
-
-* Documentation
-
-  Document everything, classes, modules, methods, configuration...
-
-  Through 100% documentation Ramaze gives the developer easy and solid
-  understanding of the underlying concepts and functionality.
-
-* Open development
-
-  Everyone is welcome to contribute to Ramaze in the easiest way possible. The
-  repository is open for patches passing the Test-suite.
-
-* Examples
-
-  Everyone learns different, some only read the source, others browse
-  documentation, but everyone loves examples for a quick and painless start.
-
-  Ramaze addresses this need and offers a wide variety of examples of usage,
-  basic functionality, project-layout and more advanced applications.
-
-* Fully BDD (Behaviour Driven Design)
-
-  Ramaze has a very complete set of so-called specifications built by RSpec.
-  These specs define the way Ramaze has to behave.
-
-  The specs are checked every time a new patch is pushed into the repository,
-  deciding whether the changes the patch applies are valid and don't break the framework.
-
-## Installation
-
-### RubyGems
-
-The simplest way of installing Ramaze is via the gem.
-
-[Rubygems](http://rubygems.org) is the package manager for ruby apps and
-libraries and provides you with the last tagged version of Ramaze.
-
-    $ gem install ramaze
-
-Versions are made as we see fit and get an announcement out (usually that's
-the major obstacle as there is a lot to announce).
-
-### Git
-
-To get the latest and sweetest, you can just pull from the repository and run
-Ramaze that way.
-
-    $ git clone git://github.com/ramaze/ramaze.git
-
-Please read the `man git` or `git help` for more information about updating
-and creating your own patches.
-This is at the moment the premier way to use Ramaze, since it is the way I
-use it.
-
-Some hints for the usage of Git.
-
-* Use `require 'ramaze'` from everywhere
-
-  Simply add the path to your repository to the RUBYLIB environment variable.
-  If you are using bash you can simply put following line into your .bashrc:
-
-      $ export RUBYLIB="$HOME/path/to/repo/lib/"
-
-  Of course you should put the real path instead, you can also add multiple
-  paths, or create your personal `site_ruby`:
-
-      $ export RUBYLIB="$HOME/ruby/ramaze/lib:$HOME/.site_ruby:$HOME/ruby/bacon/lib"
-
-* Use `require 'ramaze'` system wide from everywhere
-
-  add a file to your `site_ruby` directory named 'ramaze.rb'
-  the content should be: `require '/path/to/git/repo/ramaze/lib/ramaze'`
-
-* Pull the latest version
-
-      $ git pull
-
-* Reset the repo to original state (if you screw up something)
-
-      $ git reset --hard # resets the whole repo
-
-* Revert changes to (for example) lib/ramaze.rb only
-
-      $ git checkout master lib/ramaze.rb
-
-* Add and commit all changes.
-
-      $ git commit -a
-
-* Adding only specific changes.
-
-      # Add hunks you want to commit to the staging area (index)
-      $ git add -p
-
-* Commit the changes into the history of your repository
-
-      # Create a commit from the hunks added
-      $ git commit
-
-* output your patches into a bundle ready to be mailed (compress it before
-  sending to make sure it arrives in the way you sent it)
-
-  At the end of this process you will have a tar.bz2 for all your changes
-  that you can mail to ramaze@googlegroups.com
-
-      # make sure you are on latest revision to avoid conflicts
-      $ git pull
-
-      # create 00xx-blah.patch files against the remote repo
-      $ git format-patch origin/HEAD
-
-      # From here on you can use either git-send-email or go the manual route
-      $ tar -cjf ramaze_bundle.tar.bz2 *.patch
-
-### Direct Download
-
-  You can alternatively download the latest source code in a tarball from
-  [here](https://github.com/ramaze/ramaze/tarball/master).
-
-## Getting Started
-
-Now that you have a vague idea of what you're about to get into you might just
-want to get a way to get up and running ASAP.
-Please read below for more information about installation.
-
-Depending on what you are planning to do you can either just go and start
-reading the source or directly get some hands-on experience by trying some of
-the examples.
-Most things will require dependencies though. The basic functionality is
-provided by the WEBrick adapter and the Template::Ramaze, which just run out
-of the box. For more features you will have to install some templating-engines
-and mongrel (_very_ recommended). Ramaze will inform you when it needs further
-dependencies, so just go and try some things.
-
-Some places to get started are:
-- Read the documentation.
-- Run and read the test cases.
-- Look at the examples and run/modify them.
-
-## A couple of Examples
-
-There are some examples for your instant pleasure inside the examples-directory
-in the Ramaze-distribution.
-You can start up an example just as you usually would any other ruby program:
-
-    $ ruby examples/basic/hello.rb
-
-Or:
-
-    $ cd examples/app/blog
-    $ ruby start.rb
-  
-For more information about the usage of ramaze try:
-
-    $ ramaze --help
-
-Examples include:
-
-* examples/basic/hello.rb
-  Hello, World!
-
-* examples/basic/simple.rb
-  A bit more advanced than the hello-example, but still very basic.
-
-* examples/app/blog
-  Not yet fully functional, but coming along.
-
-* examples/app/whywiki
-  A basic examples of a minimalistic application, based on the Wiki of \_why in
-  his camping-framework.
-
-* examples/templates
-  examples of real usage of the templating-engines. Tries to implement the same
-  functionality in each `template_*.rb` file using a different engine.
-
-* Many more fully functional examples can be found in the examples folder.
-
-## How to find Help
-
-For help you can:
-
-- Visit us in the channel #ramaze on irc.freenode.net
-
-- Join the Mailinglist at http://groups.google.com/group/ramaze
-
-## And thanks to...
-
-There are a large number of people who made Ramaze possible by their ongoing
-efforts in the world of open source and by encouraging and helping me.
-
-This list is by no means a full listing of all these people, but I try to
-get a good coverage despite that.
-
-I would like to thank:
-
-* Yukihiro Matsumoto a.k.a matz
-
-    For giving the world Ruby and bringing fun back into programming.
-
-* Zed Shaw a.k.a. zedas
-
-    For developing Mongrel, Ramaze started out as a simple Hello World based
-    on that awesome server.
-
-* Christian Neukirchen a.k.a chris2
-
-    For building rack, which is just what the numerous web-developers had
-    anticipated and which will, with no doubt, change the world.
-
-* Pistos
-
-    For continious encouragment and building the first real webpage on Ramaze.
-    His bugreports were invaluable.
-
-* Jim Weirich
-
-    For Rake, which lifts off a lot of tasks from the shoulders of every
-    developer who uses it.
-
-* Thomas Sawyer a.k.a Trans
-
-    Dragging me deep into the rabbit-hole and showing me how awesome Ruby
-    truely is through his work on facets, ratchets and tons of other projects.
-
-* George Moschovitis a.k.a gmosx
-
-    For his tremendous efforts in the Nitro/Og framework, which is a source of
-    steady inspiration for Ramaze and brought me to Ruby in the first place.
-
-* Rob Levin a.k.a. lilo
-
-    He founded the most excellent Freenode IRC-network, where the most important
-    channels for rubyists are located (as is #ramaze).
-    May he rest in peace.
-
-* The guys (and gals) in the various channels on Freenode
-
-    As the people are way too many to be listed, here the channels that i call
-    my online home.
-    All the people in there deserve special thanks for getting me hooked to Ruby
-    and providing their help in a friendly and patient manner.
-
-  * \#nitro
-  * \#ruby-de
-  * \#ruby-lang
-  * \#rubyforce
+## Requirements
+
+* Innate (which in turn requires Rack).
+* A Ruby implementation based on Ruby 1.8 or newer (1.9.2, Rubinius, etc).
+* A Rack server such as Thin or Unicorn.
+* Basic knowledge of Ruby.
+
+## Community
+
+* \#ramaze on the Freenode IRC network
+* [Mailing list][mailing list]
+* [Website][website]
+
+When joining the IRC channel you don't have to be afraid to ask a question, just
+ask it and (hopefully) you'll get the answer you're looking for. However, keep
+in mind that most of us are located in different timezones so it may sometimes
+take a while before you get a reply.
+
+## Chapters
+
+If you're viewing this file in your editor or from Github it's likely that the
+table of contents isn't rendered. You can find all these files in the ``guide/``
+directory.
+
+* {file:general/installation Installation}
+* {file:general/principles Principles}
+* {file:general/special_thanks Special Thanks}
+* {file:general/configuration Configuration}
+* {file:general/ramaze_command Ramaze Command}
+* {file:general/controllers Controllers}
+* {file:general/models Models}
+* {file:general/views Views}
+* {file:general/helpers Helpers}
+* {file:general/middlewares Rack Middlewares}
+* {file:general/routes Routes}
+* {file:general/sessions Sessions}
+* {file:general/cache Caching Data}
+* {file:general/logging Logging Information}
+
+## Tutorials
+
+* {file:tutorials/introduction Introduction Tutorial}
+
+[mailing list]: https://groups.google.com/forum/#!forum/ramaze
+[website]: http://ramaze.net/

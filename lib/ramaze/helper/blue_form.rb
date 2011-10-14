@@ -4,34 +4,13 @@ require 'ramaze/gestalt'
 module Ramaze
   module Helper
     ##
-    # == Introduction
-    #
     # The BlueForm helper tries to be an even better way to build forms
-    # programmatically.  By using a simple block you can quickly create all the
+    # programmatically. By using a simple block you can quickly create all the
     # required elements for your form.
     #
-    # Since November 2010 the BlueForm helper works different. You can now
-    # specify an object as the first parameter of the form_for() method. This
-    # object will be used to retrieve the values of each field. This means that
-    # you can directly pass a database result object to the form and no longer
-    # have to manually specify values. However, you can still specify your own
-    # values if you want.
+    # See {Ramaze::Helper::BlueForm::Form} for all the available methods.
     #
-    # Old behaviour:
-    #
-    #  form_for(:method => :post) do |f|
-    #    f.input_text 'Username', :username, 'Chuck Norris'
-    #  end
-    #
-    # New behaviour:
-    #
-    #  # @data is an object that contains an instance variable named "username".
-    #  # This variable contains the value "Chuck Norris".
-    #  form_for(@data, :method => :post) do |f|
-    #    f.input_text 'Username', :username
-    #  end
-    #
-    # == Form Data
+    # ## Form Data
     #
     # As stated earlier it's possible to pass an object to the form_for()
     # method. What kind of object this is, a database result object or an
@@ -40,16 +19,16 @@ module Ramaze
     # extremely easy to directly pass a result object from your favourite ORM.
     # Example:
     #
-    #  @data = User[1]
+    #     @data = User[1]
     #
-    #  form_for(@data, :method => :post) do |f|
-    #    f.input_text 'Username', :username
-    #  end
+    #     form_for(@data, :method => :post) do |f|
+    #       f.input_text 'Username', :username
+    #     end
     #
     # If you don't want to use an object you can simply set the first parameter
     # to nil.
     #
-    # == HTML Output
+    # ## HTML Output
     #
     # The form helper uses Gestalt, Ramaze's custom HTML builder that works
     # somewhat like Erector. The output is very minimalistic, elements such as
@@ -61,14 +40,11 @@ module Ramaze
     # directly. When using Etanni this would result in something like the
     # following:
     #
-    #  #{
-    #    form_for(@result, :method => :post) do |f| do
-    #      f.input_text 'Text label', :textname, 'Chunky bacon!'
-    #    end
-    #  }
+    #     #{form_for(@result, :method => :post) do |f| do
+    #       f.input_text 'Text label', :textname, 'Chunky bacon!'
+    #     end}
     #
-    # @example
-    #
+    # @example Creating a basic form
     #  form_for(@data, :method => :post) do |f|
     #    f.input_text 'Username', :username
     #  end
@@ -197,7 +173,6 @@ module Ramaze
         #
         # @param [String] text The text to display inside the legend tag.
         # @example
-        #
         #   form_for(@data, :method => :post) do |f|
         #     f.legend 'Ramaze rocks!'
         #   end
@@ -211,7 +186,6 @@ module Ramaze
         #
         # @param [Block] &block The form elements to display inside the fieldset.
         # @example
-        #
         #  form_for(@data, :method => :post) do |f|
         #    f.fieldset do
         #      f.legend 'Hello, world!'
@@ -232,7 +206,6 @@ module Ramaze
         # @param [Hash] args Any additional HTML attributes along with their
         #  values.
         # @example
-        #
         #   form_for(@data, :method => :post) do |f|
         #     f.input_text 'Username', :username
         #   end
@@ -264,7 +237,6 @@ module Ramaze
         # @param [Hash] args Any additional HTML attributes along with their
         #  values.
         # @example
-        #
         #  form_for(@data, :method => :post) do |f|
         #    f.input_password 'My password', :password
         #  end
@@ -293,7 +265,6 @@ module Ramaze
         # @param [Hash] args Any additional HTML attributes along with their
         #  values.
         # @example
-        #
         #  form_for(@data, :method => :post) do |f|
         #    f.input_submit 'Save'
         #  end
@@ -316,20 +287,20 @@ module Ramaze
         # for each checkbox.  When using a hash the key will be displayed and
         # the value will be the value of the checkbox. Example:
         #
-        #  @data = Class.new
-        #    attr_reader :gender_arr
-        #    attr_reader :gender_hash
+        #     @data = Class.new
+        #       attr_reader :gender_arr
+        #       attr_reader :gender_hash
         #
-        #    def initialize
-        #      @gender_arr  = ['male', 'female']
-        #      @gender_hash = {"Male" => "male", "Female" => "female"}
-        #    end
-        #  end.new
+        #       def initialize
+        #         @gender_arr  = ['male', 'female']
+        #         @gender_hash = {"Male" => "male", "Female" => "female"}
+        #       end
+        #     end.new
         #
-        #  form_for(@data, :method => :post) do |f|
-        #    f.input_checkbox "Gender", :gender_arr
-        #    f.input_checkbox "Gender", :gender_hash
-        #  end
+        #     form_for(@data, :method => :post) do |f|
+        #       f.input_checkbox "Gender", :gender_arr
+        #       f.input_checkbox "Gender", :gender_hash
+        #     end
         #
         # @example
         #  form_for(@data, :method => :post) do |f|
@@ -468,20 +439,20 @@ module Ramaze
         # If you want to generate multiple radio buttons you can use an array
         # just like you can with checkboxes. Example:
         #
-        #  @data = Class.new
-        #    attr_reader :gender_arr
-        #    attr_reader :gender_hash
+        #     @data = Class.new
+        #       attr_reader :gender_arr
+        #       attr_reader :gender_hash
         #
-        #    def initialize
-        #      @gender_arr  = ['male', 'female']
-        #      @gender_hash = {"Male" => "male", "Female" => "female"}
-        #    end
-        #  end.new
+        #       def initialize
+        #         @gender_arr  = ['male', 'female']
+        #         @gender_hash = {"Male" => "male", "Female" => "female"}
+        #       end
+        #     end.new
         #
-        #  form_for(@data, :method => :post) do |f|
-        #    f.input_radio "Gender", :gender_arr
-        #    f.input_radio "Gender", :gender_hash
-        #  end
+        #     form_for(@data, :method => :post) do |f|
+        #       f.input_radio "Gender", :gender_arr
+        #       f.input_radio "Gender", :gender_hash
+        #     end
         #
         # For more information see the input_checkbox() method.
         #
@@ -517,7 +488,6 @@ module Ramaze
         # @param [Hash] args Any additional HTML attributes along with their
         #  values.
         # @example
-        #
         #  form_for(@data, :method => :post) do |f|
         #    f.input_file 'Image', :image
         #  end
@@ -542,7 +512,6 @@ module Ramaze
         # @param [Hash] args Any additional HTML attributes along with their
         #  values.
         # @example
-        #
         #  form_for(@data, :method => :post) do |f|
         #    f.input_hidden :user_id
         #  end
@@ -568,7 +537,6 @@ module Ramaze
         # @param [Hash] args Any additional HTML attributes along with their
         #  values.
         # @example
-        #
         #  form_for(@data, :method => :post) do |f|
         #    f.textarea 'Description', :description
         #  end
@@ -599,7 +567,6 @@ module Ramaze
         # @param [String Symbol] name The name of the select tag.
         # @param [Hash] args Hash containing additional HTML attributes.
         # @example
-        #
         #  form_for(@data, :method => :post) do |f|
         #    f.select 'Country', :country_list
         #  end

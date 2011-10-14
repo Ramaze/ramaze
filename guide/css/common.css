@@ -1,0 +1,20 @@
+body
+{
+    font-size:   14px;
+    line-height: 1.6;
+    margin:      0 auto;
+    max-width:   960px;
+}
+
+p code
+{
+    background:    #f2f2f2;
+    padding-left:  3px;
+    padding-right: 3px;
+}
+
+pre.code
+{
+    font-size:   13px;
+    line-height: 1.4;
+}

@@ -4,8 +4,8 @@ module Ramaze
   module Helper
     # Helper for pagination and pagination-navigation.
     #
-    # See detailed API docs for Paginator below.
-    # Also have a look at the examples/helpers/paginate.rb
+    # See {Ramaze::Helper::Paginate#paginate} for more information.
+    #
     module Paginate
       include Traited
 
@@ -26,31 +26,36 @@ module Ramaze
       # The examples below are meant to be used within your controller or view.
       #
       # Usage with Array:
-      #   data = (1..100).to_a
-      #   @pager = paginate(data, :limit => 30, :page => 2)
-      #   @pager.navigation
-      #   @pager.each{|e| puts(e) }
+      #
+      #     data = (1..100).to_a
+      #     @pager = paginate(data, :limit => 30, :page => 2)
+      #     @pager.navigation
+      #     @pager.each{|e| puts(e) }
       #
       # Usage with Sequel:
-      #   data = Article.filter(:public => true)
-      #   @pager = paginate(data, :limit => 5)
-      #   @pager.navigation
-      #   @pager.each{|e| puts(e)
       #
-      # Note that you must first extend Sequel with the pagination extension.
-      #   Sequel.extension :pagination
+      #     data = Article.filter(:public => true)
+      #     @pager = paginate(data, :limit => 5)
+      #     @pager.navigation
+      #     @pager.each{|e| puts(e)
       #
-      # +dataset+ may be a Sequel dataset or an Array
-      # +options+ Takes precedence to trait[:paginate] and may contain
-      #           following pairs:
-      #   :limit  The number of elements used when you call #each on the
-      #           paginator
-      #   :var    The variable name being used in the request, this is helpful
-      #           if you want to use two or more independent paginations on the
-      #           same page.
-      #   :page   The page you are currently on, if not given it will be
-      #           retrieved from current request variables. Defaults to 1 if
-      #           neither exists.
+      # Note that you must first extend Sequel with the pagination extension"
+      #
+      #
+      #     Sequel.extension :pagination
+      #
+      # @param [Sequel::Dataset|Array] dataset May be a Sequel dataset or an
+      #  Array
+      # @param [Hash] options A hash containing custom options that takes
+      #  precedence to ``trait[:paginate].
+      # @option options [Fixnum] :limit The number of elements used when you
+      #  call #each on the paginator
+      # @option options [String] :var The variable name being used in the
+      #  request, this is helpful if you want to use two or more independent
+      #  paginations on the same page.
+      # @option options [Fixnum] :page The page you are currently on, if not
+      #  given it will be retrieved from current request variables. Defaults to
+      #  1 if neither exists.
       #
       def paginate(dataset, options = {})
         options = ancestral_trait[:paginate].merge(options)
@@ -80,24 +85,26 @@ module Ramaze
         # with CSS.
         #
         # Output with 5 elements, page 1, limit 3:
-        #   <div class="pager">
-        #     <span class="first grey">&lt;&lt;</span>
-        #     <span class="previous grey">&lt;</span>
-        #     <a class="current" href="/index?pager=1">1</a>
-        #     <a href="/index?pager=2">2</a>
-        #     <a class="next" href="/index?pager=2">&gt;</a>
-        #     <a class="last" href="/index?pager=2">&gt;&gt;</a>
-        #   </div>
+        #
+        #     <div class="pager">
+        #       <span class="first grey">&lt;&lt;</span>
+        #       <span class="previous grey">&lt;</span>
+        #       <a class="current" href="/index?pager=1">1</a>
+        #       <a href="/index?pager=2">2</a>
+        #       <a class="next" href="/index?pager=2">&gt;</a>
+        #       <a class="last" href="/index?pager=2">&gt;&gt;</a>
+        #     </div>
         #
         # Output with 5 elements, page 2, limit 3:
-        #   <div class="pager" />
-        #     <a class="first" href="/index?user_page=1">&lt;&lt;</a>
-        #     <a class="previous" href="/index?user_page=1">&lt;</a>
-        #     <a href="/index?user_page=1">1</a>
-        #     <a class="current" href="/index?user_page=2">2</a>
-        #     <span class="next grey">&gt;</span>
-        #     <span class="last grey">&gt;&gt;</span>
-        #   </div>
+        #
+        #     <div class="pager" />
+        #       <a class="first" href="/index?user_page=1">&lt;&lt;</a>
+        #       <a class="previous" href="/index?user_page=1">&lt;</a>
+        #       <a href="/index?user_page=1">1</a>
+        #       <a class="current" href="/index?user_page=2">2</a>
+        #       <span class="next grey">&gt;</span>
+        #       <span class="last grey">&gt;&gt;</span>
+        #     </div>
         #
         def navigation(limit = 8)
           g = Ramaze::Gestalt.new

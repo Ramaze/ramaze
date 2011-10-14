@@ -3,19 +3,17 @@
 
 module Ramaze
   module CoreExtensions
-
     # Extensions for String
-
     module String
-
-      # simple transformation to CamelCase from snake_case
+      ##
+      # Simple transformation to CamelCase from snake_case
       #
-      #   'foo_bar'.camel_case # => 'FooBar'
-
+      # @example
+      #  'foo_bar'.camel_case # => 'FooBar'
+      #
       def camel_case
         split('_').map{|e| e.capitalize}.join
       end
-    end
-
-  end
-end
+    end # String
+  end # CoreExtensions
+end # Ramaze

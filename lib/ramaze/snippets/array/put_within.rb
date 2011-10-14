@@ -3,15 +3,11 @@
 
 module Ramaze
   module CoreExtensions
-
     # Extensions for Array
-
     module Array
-
       #   a = [1, 2, 3]
       #   a.put_within(4, :after => 2, :before => 3)
       #   a # => [1, 2, 4, 3]
-
       def put_within(object, constrain)
         pre, post = constrain.values_at(:after, :before)
 
@@ -23,7 +19,6 @@ module Ramaze
       #   a = [1, 2, 3]
       #   a.put_after(2, 4)
       #   a # => [1, 2, 4, 3]
-
       def put_after(element, object)
         return self[index(element) + 1, 0] = object if include?(element)
 
@@ -33,12 +28,11 @@ module Ramaze
       #   a = [1, 2, 3]
       #   a.put_before(2, 4)
       #   a # => [1, 4, 2, 3]
-
       def put_before(element, object)
         return self[rindex(element), 0] = object if include?(element)
 
         raise ArgumentError, "The given element doesn't exist"
       end
-    end
-  end
-end
+    end # Array
+  end # CoreExtensions
+end # Ramaze

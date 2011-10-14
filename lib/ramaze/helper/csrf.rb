@@ -17,29 +17,29 @@ module Ramaze
     # However, there's no need to panic as it's very easy to setup a basic anti
     # CSRF system.
     #
-    # == Usage
+    # ## Usage
     #
     # In order to enable CSRF protection we need to do two things. Load the
     # helper and create a before_all block in a controller. Take a look at the
     # following code:
     #
-    #  class BaseController < Ramaze::Controller
-    #    before_all do
-    #      puts "Hello, before_all!"
-    #    end
-    #  end
+    #     class BaseController < Ramaze::Controller
+    #       before_all do
+    #         puts "Hello, before_all!"
+    #       end
+    #     end
     #
     # This would output "Hello, before_all!" to the console upon each request.
     # Not very useful but it does show what the before_all block can do. On to
     # actual CSRF related code!
     #
-    #  class BaseController < Ramaze::Controller
-    #    before_all do
-    #      csrf_protection :save do
-    #        # ....
-    #      end
-    #    end
-    #  end
+    #     class BaseController < Ramaze::Controller
+    #       before_all do
+    #         csrf_protection :save do
+    #           # ....
+    #         end
+    #       end
+    #     end
     #
     # This example introduces an extra block that validates the current
     # request. Whenever a user requests a controller that either extends
@@ -47,13 +47,13 @@ module Ramaze
     # current request data contains a CSRF token. Of course an if/end isn't
     # very useful if it doesn't do anything, let's add some code.
     #
-    #  class BaseController < Ramaze::Controller
-    #    before_all do
-    #      csrf_protection :save do
-    #        puts "Hello, unsafe data!"
-    #      end
-    #    end
-    #  end
+    #     class BaseController < Ramaze::Controller
+    #       before_all do
+    #         csrf_protection :save do
+    #           puts "Hello, unsafe data!"
+    #         end
+    #       end
+    #     end
     #
     # The code above checks if the current method is "save" (or any other of
     # the provided methods) and checks if an CSRF token is supplied if the
@@ -67,18 +67,17 @@ module Ramaze
     # If you're a lazy person you can copy-paste the example below and adapt it
     # to your needs.
     #
-    #  class BaseController < Ramaze::Controller
-    #    before_all do
-    #      csrf_protection :save do
-    #        respond("The supplied CSRF token is invalid.", 401)
-    #      end
-    #    end
-    #  end
+    #     class BaseController < Ramaze::Controller
+    #       before_all do
+    #         csrf_protection :save do
+    #           respond("The supplied CSRF token is invalid.", 401)
+    #         end
+    #       end
+    #     end
     #
     # @author Yorick Peterse
     #
     module CSRF
-
       ##
       # Method that can be used to protect the specified methods against CSRF
       # exploits. Each protected method will require the token to be stored in
@@ -86,10 +85,10 @@ module Ramaze
       # against the current token in the session.
       #
       # @author Yorick Peterse
-      # @param  [Strings/Symbol] *methods Methods that will be protected/unprotected.
+      # @param  [Strings/Symbol] *methods Methods that will be
+      #  protected/unprotected.
       # @param  [Block] Block that will be executed if the token is invalid.
       # @example
-      #
       #  # Protect "create" and "save" against CSRF exploits
       #  before_all do
       #    csrf_protection :create, :save do
@@ -97,7 +96,7 @@ module Ramaze
       #    end
       #  end
       #
-      def csrf_protection *methods, &block
+      def csrf_protection(*methods, &block)
         # Only protect the specified methods
         if methods.include?(action.name) or methods.include?(action.name.to_sym)
           # THINK: For now the field name is hard-coded to "csrf_token". While
@@ -120,9 +119,8 @@ module Ramaze
       #
       # @author Yorick Peterse
       # @param  [Hash] Additional arguments that can be set such as the TTL.
-      # @return [Void]
       #
-      def generate_csrf_token args = {}
+      def generate_csrf_token(args = {})
         # Default TTL is 15 minutes
         ttl = args[:ttl] || (15 * 60)
 
@@ -154,7 +152,6 @@ module Ramaze
       # @author Yorick Peterse
       # @return [String] The current CSRF token.
       # @example
-      #
       #  form(@data, :method => :post) do |f|
       #    f.input_hidden :csrf_token, get_csrf_token()
       #  end
@@ -180,9 +177,8 @@ module Ramaze
       #
       # @author Yorick Peterse
       # @param  [String] input_token The CSRF token to validate.
-      # @return [Bool]
+      # @return [TrueClass|FalseClass]
       # @example
-      #
       #  before_all do
       #    if validate_csrf_token(request.params['csrf_token']) != true
       #      respond("Invalid CSRF token", 401)
@@ -205,6 +201,6 @@ module Ramaze
           _csrf[:ip] == request.env['REMOTE_ADDR'] &&
           _csrf[:agent] == request.env['HTTP_USER_AGENT']
       end
-    end
-  end
-end
+    end # CSRF
+  end # Helper
+end # Ramaze

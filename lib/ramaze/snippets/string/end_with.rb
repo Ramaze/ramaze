@@ -3,9 +3,7 @@
 
 module Ramaze
   module CoreExtensions
-
     # Extensions for String
-
     module String
       unless ''.respond_to?(:end_with?)
         # Compatibility with 1.9
@@ -14,7 +12,6 @@ module Ramaze
           self[-other.size, other.size] == other
         end
       end
-    end
-
-  end
-end
+    end # String
+  end # CoreExtensions
+end # Ramaze

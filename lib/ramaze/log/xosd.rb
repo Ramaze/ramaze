@@ -11,7 +11,8 @@ module Ramaze
     # Informer for the XOSD notification system for X11.
     #
     # You can install the ruby-bindings with:
-    #   gem install xosd.
+    #
+    #     gem install xosd.
     #
     class Xosd < ::Xosd
       attr_accessor :options

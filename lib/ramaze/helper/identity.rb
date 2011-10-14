@@ -114,6 +114,6 @@ module Ramaze
       def openid_consumer
         OpenID::Consumer.new(session, Ramaze::OpenIDStore)
       end
-    end
-  end
-end
+    end # Identity
+  end # Helper
+end # Ramaze

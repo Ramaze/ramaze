@@ -7,8 +7,7 @@ module Ramaze
   # applications in Ramaze. It acts as a nice wrapper around Innate::Node and
   # allows for a more traditional MVC approach.
   #
-  # == Example
-  #
+  # @example An example controller
   #  class Posts < Ramaze::Controller
   #    map '/posts'
   #

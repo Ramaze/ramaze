@@ -6,11 +6,11 @@ module Ramaze
     # PID. The PID is used to kill the process, the Rackup file is used to start
     # the process again after it has been killed.
     #
-    # == Usage
+    # Usage:
     #
-    #  ramaze restart
-    #  ramaze restart /home/foobar/projects/ramaze/ \
-    #  -P /home/foobar/projects/ramaze/ramaze.pid
+    #    ramaze restart
+    #    ramaze restart /home/foobar/projects/ramaze/ \
+    #    -P /home/foobar/projects/ramaze/ramaze.pid
     #
     # @author Yorick Peterse
     # @since  21-07-2011

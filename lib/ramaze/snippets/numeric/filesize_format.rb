@@ -3,7 +3,6 @@
 
 module Ramaze
   module CoreExtensions
-
     # Extensions for Numeric
     module Numeric
       FILESIZE_FORMAT = [
@@ -26,7 +25,6 @@ module Ramaze
 
         self.to_s
       end
-    end
-
-  end
-end
+    end # Numeric
+  end # CoreExtensions
+end # Ramaze

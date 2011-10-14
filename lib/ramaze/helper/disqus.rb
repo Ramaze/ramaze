@@ -3,7 +3,7 @@ require 'disqus/view_helpers'
 
 module Ramaze
   module Helper
-
+    ##
     # Provides shortcuts via Disqus::ViewHelpers.
     #
     # Make sure that you set your disqus credentials when using this helper:
@@ -19,8 +19,9 @@ module Ramaze
     #   disqus_recent_comments
     #   disqus_thread
     #   disqus_top_commenters
+    #
     module Disqus
       include ::Disqus::ViewHelpers
-    end
-  end
-end
+    end # Disqus
+  end # Helper
+end # Ramaze

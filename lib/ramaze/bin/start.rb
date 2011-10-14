@@ -7,11 +7,11 @@ module Ramaze
     # directory this command will look for a Rackup file in that directory,
     # otherwise it assumes the specified file is a Rackup file.
     #
-    # == Usage
+    # Usage:
     #
-    #  ramaze start
-    #  ramaze start /home/foobar/projects/blog/config.ru
-    #  ramaze start /home/foobar/projects/blog
+    #    ramaze start
+    #    ramaze start /home/foobar/projects/blog/config.ru
+    #    ramaze start /home/foobar/projects/blog
     #
     # @author Yorick Peterse
     # @since  21-07-2011

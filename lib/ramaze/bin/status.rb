@@ -5,10 +5,10 @@ module Ramaze
     # The status command can be used to show the details, such as the PID and
     # the CPU usage, of a running Ramaze application.
     #
-    # == Usage
+    # Usage:
     #
-    #  ramaze status
-    #  ramaze status /home/projects/ramaze/ramaze.pid
+    #    ramaze status
+    #    ramaze status /home/projects/ramaze/ramaze.pid
     #
     # @author Yorick Peterse
     # @author TJ Vanderpoel

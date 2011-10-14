@@ -4,7 +4,7 @@
 module Ramaze
   module Helper
     ##
-    # provides an call/answer mechanism, this is useful for example in a
+    # Provides an call/answer mechanism, this is useful for example in a
     # login-system.
     #
     # It is basically good to redirect temporarly somewhere else without

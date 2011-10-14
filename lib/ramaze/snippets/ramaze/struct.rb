@@ -4,7 +4,6 @@
 
 module Ramaze
   class Struct < ::Struct
-
     # Makes it possible to access the keys directly by their name, not only
     # their index. The original Struct#values_at tries to call #to_int on the
     # arguments.
@@ -30,7 +29,6 @@ module Ramaze
     #  # Added new behaviour:
     #  point.values_at(:y, :x)
     #  # => [10, 15]
-
     def values_at(*keys)
       keys.map do |key|
         case key
@@ -41,5 +39,5 @@ module Ramaze
         end
       end
     end
-  end
-end
+  end # Struct
+end # Ramaze

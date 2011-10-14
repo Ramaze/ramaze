@@ -3,17 +3,13 @@ require 'uri'
 
 module Ramaze
   module CoreExtensions
-
     # Extensions for String
-
     module String
-
       # String#escape is an extensible escaping mechanism for string.  currently
       # it suports
       #   '<div>foo bar</div>'.esc(:html)
       #   'foo bar'.esc(:uri)
       #   'foo bar'.esc(:cgi)
-
       def escape which = :html
         case which
         when :html
@@ -28,7 +24,6 @@ module Ramaze
       end
 
       alias_method 'esc', 'escape'
-    end
-
-  end
-end
+    end # String
+  end # CoreExtensions
+end # Ramaze

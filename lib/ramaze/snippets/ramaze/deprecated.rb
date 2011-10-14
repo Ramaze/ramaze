@@ -20,4 +20,4 @@ module Ramaze
       super
     end
   end
-end
+end # Ramaze

@@ -6,7 +6,7 @@ module Ramaze
     # The XHTML helper can be used for generating CSS and Javascript tags.
     # Generating a CSS tag can be done by calling the css() method:
     #
-    #   css 'reset', 'screen', :only => 'ie'
+    #     css 'reset', 'screen', :only => 'ie'
     #
     # This would result in a stylesheet named "reset.css" being loaded only when
     # the user is using Internet Explorer.
@@ -24,10 +24,9 @@ module Ramaze
       # @param [String] name The name of the CSS file to load.
       # @param [String] media The media type for which the stylesheet should be
       #  loaded.
-      # @param [Hash] options A hash containing additional options for the 
+      # @param [Hash] options A hash containing additional options for the
       #  stylesheet tag.
       # @example
-      #
       #   # A very basic example.
       #   css 'reset'
       #
@@ -50,7 +49,7 @@ module Ramaze
           else
             prefix = options[:prefix] || 'css'
             LINK_TAG % [
-              "#{Ramaze.options.prefix.chomp("/")}/#{prefix}/#{name}.css", 
+              "#{Ramaze.options.prefix.chomp("/")}/#{prefix}/#{name}.css",
               media
             ]
           end
@@ -63,7 +62,6 @@ module Ramaze
       # again.
       #
       # @example
-      # 
       #   # This is pretty basic
       #   css_for 'reset', '960', 'style'
       #
@@ -71,8 +69,8 @@ module Ramaze
       #   css_for ['reset', 'print'], ['960', 'print']
       #
       # @see css()
-      # @param [Array] args An array containing either the names of all 
-      #  stylesheets to load or a collection of arrays of which each array 
+      # @param [Array] args An array containing either the names of all
+      #  stylesheets to load or a collection of arrays of which each array
       #  defines the name, media and additional parameters.
       # @return [String]
       #
@@ -81,24 +79,23 @@ module Ramaze
       end
 
       ##
-      # Generates a Javascript tag that loads an external Javascript file. This 
+      # Generates a Javascript tag that loads an external Javascript file. This
       # tag can't be used for loading inline Javascript files.
       #
       # @example
-      #
       #   # Simple isn't it?
       #   js 'jquery'
       #
       #   # Let's change the directory to "some_other_directory"
       #   js 'jquery', :prefix => 'some_other_directory'
       #
-      # @param [String] name The name of the Javascript file that should be 
+      # @param [String] name The name of the Javascript file that should be
       #  loaded.
       # @param [Hash] options Hash that can contain a :prefix key that defines
       #  the directory in which the JS file is located. By default this key is
       #  set to "js".
       # @return [String]
-      # 
+      #
       def js(name, options={})
         if name =~ /^http/ # consider it external full url
           SCRIPT_TAG % name
@@ -106,21 +103,20 @@ module Ramaze
           SCRIPT_TAG % "#{Ramaze.options.prefix.chomp("/")}/#{options[:prefix] || 'js'}/#{name}.js"
         end
       end
-      
+
       ##
       # Generate multiple Javascript tags using the js() method.
       #
       # @example
-      #
       #   # Pretty simple isn't it?
       #   js_for 'jquery', 'application', 'jquery.gritter'
       #
       # @param [Array] args Array containing the Javascript files to load.
       # @return [String]
-      # 
+      #
       def js_for(*args)
         args.map{|arg| js(*arg) }.join("\n")
       end
     end # XHTML
-  end # Helper 
+  end # Helper
 end # Ramaze

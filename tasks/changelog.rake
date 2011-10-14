@@ -1,6 +1,6 @@
 desc 'update changelog'
 task :changelog do
-  File.open('doc/CHANGELOG', 'w+') do |changelog|
+  File.open('guide/CHANGELOG', 'w+') do |changelog|
     `git log -z --abbrev-commit`.split("\0").each do |commit|
       next if commit =~ /^Merge: \d*/
       ref, author, time, _, title, _, message = commit.split("\n", 7)
