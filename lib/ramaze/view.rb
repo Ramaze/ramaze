@@ -26,6 +26,7 @@ module Ramaze
     auto_register :Nagoro,     :nag
     auto_register :Remarkably, :rem
     auto_register :Sass,       :sass
+    auto_register :Slim,       :slim
     auto_register :Tagz,       :tagz
     auto_register :Tenjin,     :rbhtml, :tenjin
     auto_register :Slippers,   :st
