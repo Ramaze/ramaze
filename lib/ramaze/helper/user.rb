@@ -115,15 +115,25 @@ module Ramaze
       end
 
       ##
-      # Rhortcut for user._login but default the default argument is
-      # request.params.
+      # This method is used to authenticate a user against the supplied credentials (which default to 'request.params').
       #
-      # This method returns the value value as
-      # {Ramaze::Helper::User::Wrapper#_login()}.
+      # This method is a proxy to  user._login which returns the value as returned by {Ramaze::Helper::User::Wrapper#_login()}.
+      #
+      # The supplied argument should be a hash with the user's credentials.
+      # The credentials hash may use any naming for the hash keys as long as they are consistent with the 
+      # model which authenticates them (through the 'authenticate(Hash)' method) such as:
+      # {"username" =>"name", "password" => "the_passwd"}
+      #
+      # On success it returns a hash of the credentials embedded within a hash whose only key is ':credentials'
+      # e.g., {:credentials=>{"username"=>"myuser", "password"=>"mypassword"}}
+      #
+      # On failure to authenticate this method returns nil.
       #
       # @example
-      #  if user_login
-      #    respond 'You have been logged in', 200
+      #  auth = {"username" => "my_username", "password" => "mypass"}
+      #  creds = user_login(auth)
+      #  if creds
+      #    respond 'You have been logged in as #{creds[:credentials]["username"]}', 200
       #  else
       #    respond 'You could not be logged in', 401
       #  end
@@ -131,9 +141,8 @@ module Ramaze
       # @author manveru
       # @api    external
       # @see    Ramaze::Helper::User::Wrapper#_login
-      # @param  [Hash] creds the credentials that will be passed to the callback
-      #  or model.
-      # @return [Ramaze::Helper::User::Wrapper]
+      # @param  [Hash] creds the credentials that will be passed to the callback or model.
+      # @return [nil Hash[Hash]]
       #
       def user_login(creds = request.params)
         user._login(creds)
