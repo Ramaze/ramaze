@@ -1,10 +1,12 @@
 # Rack Middlewares
 
-Ramaze is a Rack based framework and thus allows you to create so called
-middlewares. Middlewares are basically classes that can be used to intercept the
-communication between Rack, Ramaze and the visitor as well as providing common
-functionality such as logging of requests. The flow of a Rack request (including
-middlewares) looks as following::
+Ramaze is a Rack based framework and thus allows you to create so called Rack 
+middlewares. Middlewares are basically objects that are stacked together 
+in order to intercept and process sequentially each incoming request and outgoing 
+response between Rack and Ramaze. You can think of a collection of middlewares
+as a stack at whose bottom lies your Ramaze app.
+
+The flow of a Rack request (including middlewares) looks as following::
 
     Request --> Server (Thin, Unicorn, etc) --> Rack --> Middleware(s) -->
     Ramaze  --> Controller
@@ -81,20 +83,26 @@ banned". Our final middleware looks like the following:
 ## Using Middlewares
 
 Now it's time to tell Ramaze to actually use the middleware. This can be done
-by calling Ramaze#middleware!. This method takes a block that defines what
-middlewares to use for what environment. Assuming we're dunning in "dev" mode
-our call will look like the following:
+by calling Ramaze#middleware!. This method accepts a block in which one defines 
+which middlewares to use for a specific mode and the name for this Ramaze mode 
+(Ramaze comes with "live" and "dev"). 
+
+In the block you can call two Innate#MiddlewareCompiler methods 
+```use()``` and ```run()```. The ```use()``` method is used in order to add and 
+configure a middleware, while ```run()``` is used to determine what class is used
+to run our Ramaze application. Unless you're using a custom class this should 
+always be set to {Ramaze::AppMap}.
+
+Assuming we're running in "dev" mode our call will look like the following:
 
     Ramaze.middleware! :dev do |m|
       m.use(Banlist)
       m.run(Ramaze::AppMap)
     end
 
-When calling the ``middleware!()`` method it's first argument should be a
-development mode to use (Ramaze comes with "live" and "dev"), the method also
-accepts a block which is used to determine what middlewares to use and to run
-Ramaze ({Ramaze::AppMap}). In this block you can call two methods, use() and
-run(). The first method is used to add a middleware and configure it, the run()
-method is used to determine what class is used to run our Ramaze application.
-Unless you're using a custom class this should always be set to
-{Ramaze::AppMap}.
+Note that when you use Ramaze#middleware! you also replace the previously setup 
+stack of middlewares. Therefore in order to add your new middleware on top of the 
+existing ones you either have to read-in each one using 
+Innate#MiddlewareCompiler#middlewares and re-add it to the newly created 
+middleware stack or simply copy (lets say in your app.rb) what has been setup 
+inside {file:lib/ramaze.rb ramaze.rb}.
