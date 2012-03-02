@@ -77,8 +77,8 @@ load all helpers the Ramaze way.
 
 ## Innate Helpers
 
-Note that you may also find some popular helpers that are used by default in 
-Ramaze under the Innate project.
+Note that you may also find some popular helpers, that are used by default in 
+Ramaze, under the Innate project.
 
 * {Innate::Helper::Aspect}: provides before/after wrappers for actions.
 * {Innate::Helper::CGI}: gives shortcuts to some CGI methods.

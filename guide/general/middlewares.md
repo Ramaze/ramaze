@@ -106,3 +106,14 @@ the existing ones you either have to read-in each one using
 ``Innate#MiddlewareCompiler#middlewares`` and re-add it to the newly created
 middleware stack or simply copy (lets say in your app.rb) what has been setup
 inside ``lib/ramaze.rb``.
+
+	current_mw = Ramaze.middleware(:dev).middlewares
+	Ramaze.middleware! :dev do |mode|
+  	  current_mw.each do |mw|
+	    mode.use(mw[0],*mw[1], &mw[2]) # middleware, args, block
+	  end
+	
+	  mode.use(Banlist)
+	  mode.run(Ramaze::AppMap)
+	end
+	
