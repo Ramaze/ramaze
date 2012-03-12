@@ -14,6 +14,15 @@ module Ramaze
       trait :paginate => {
         :limit => 10,
         :var   => 'pager',
+        :css   => { 
+            :first    => 'first',
+            :prev     => 'prev',
+            :next     => 'next',
+            :last     => 'last',
+            :current  => 'current',
+            :number   => '',
+            :disabled => 'grey'
+        }
       }
 
       ##
@@ -62,22 +71,26 @@ module Ramaze
         limit = options[:limit]
         var   = options[:var]
         page  = options[:page] || (request[var] || 1).to_i
-
-        Paginator.new(dataset, page, limit, var)
+        opts = {}
+        opts.merge!({:css => options[:css]}) if options[:css]
+        Paginator.new(dataset, page, limit, var, opts)
       end
 
       # Provides easy pagination and navigation
       class Paginator
         include Ramaze::Helper
         helper :link, :cgi
+        attr_reader :css
 
-        def initialize(data = [], page = 1, limit = 10, var = 'pager')
+        def initialize(data = [], page = 1, limit = 10, var = 'pager', opts = {})
           @data, @page, @limit, @var = data, page, limit, var
+          @css = Paginate.trait[:paginate][:css].dup
+          @css.merge!(opts[:css]) if opts[:css]
           @pager = pager_for(data)
           @page = @page > page_count ? page_count : @page
           @pager = pager_for(data)
         end
-
+        
         ##
         # Returns String with navigation div.
         #
@@ -110,34 +123,35 @@ module Ramaze
           g = Ramaze::Gestalt.new
           g.div :class => :pager do
             if first_page?
-              g.span(:class => 'first grey'){ h('<<') }
-              g.span(:class => 'previous grey'){ h('<') }
+              g.span(:class => "#{@css[:first]} #{@css[:disabled]}"){ h('<<') }
+              g.span(:class => "#{@css[:prev]} #{@css[:disabled]}"){ h('<') }
             else
-              link(g, 1, '<<', :class => :first)
-              link(g, prev_page, '<', :class => :previous)
+              link(g, 1, '<<', :class => @css[:first])
+              link(g, prev_page, '<', :class => @css[:prev])
             end
 
             lower = limit ? (current_page - limit) : 1
             lower = lower < 1 ? 1 : lower
 
             (lower...current_page).each do |n|
-              link(g, n)
+              link(g, n, n, :class => @css[:number])
             end
 
-            link(g, current_page, current_page, :class => :current)
+            link(g, current_page, current_page, 
+              :class => "#{@css[:current]} #{@css[:number]}" )
 
             if last_page?
-              g.span(:class => 'next grey'){ h('>') }
-              g.span(:class => 'last grey'){ h('>>') }
+              g.span(:class => "#{@css[:next]} #{@css[:disabled]}"){ h('>') }
+              g.span(:class => "#{@css[:last]} #{@css[:disabled]}"){ h('>>') }
             elsif next_page
               higher = limit ? (next_page + limit) : page_count
               higher = [higher, page_count].min
               (next_page..higher).each do |n|
-                link(g, n)
+                link(g, n, n, :class => @css[:number])
               end
 
-              link(g, next_page, '>', :class => :next)
-              link(g, page_count, '>>', :class => :last)
+              link(g, next_page, '>', :class => @css[:next])
+              link(g, page_count, '>>', :class => @css[:last])
             end
           end
           g.to_s
