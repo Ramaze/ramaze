@@ -21,7 +21,7 @@ layout of the resulting framework.
 
 Today Ramaze serves as a framework for those who want to develop their projects
 in their own way rather than being forced to work in a way that the framework
-(and it's creators) define. It tries not to make any assumptions and more
+(and its creators) define. It tries not to make any assumptions and more
 importantly: it puts you back in control of your code. An example of this is the
 default file structure of new Ramaze projects.  Out of the box a new project
 uses the MVC pattern. The cool thing about Ramaze however is that you're not
