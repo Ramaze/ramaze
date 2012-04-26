@@ -36,7 +36,7 @@ module Ramaze
       # Use in your template to display all flash messages that may be stored.
       # For example, given you stored:
       #
-      #   flash # => { :error => 'Pleae enter your name'
+      #   flash # => { :error => 'Please enter your name'
       #                :info => 'Do you see the fnords?' }
       #
       # Then a flashbox would display:
