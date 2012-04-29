@@ -32,7 +32,7 @@ we'll use the last approach as it teaches more about what each file does. If
 you're interested in learning more about the executable read the chapter
 {file:general/ramaze_command Ramaze Command}.
 
-The first step is to create our project directory, let's call it "tutorial"::
+The first step is to create our project directory, let's call it "tutorial":
 
     $ mkdir tutorial
     $ cd tutorial
@@ -89,7 +89,7 @@ Whenever you want to load something relative to a file it's best to use
 __DIR__ (or `require_relative` if you're on 1.9).
 
 Right, time to create the controller we just loaded (don't actually start the
-application, it will trigger an error!)::
+application, it will trigger an error!):
 
     $ mkdir controller/
     $ touch controller/tutorial.rb
@@ -115,12 +115,12 @@ Currently we have the following files:
 * app.rb
 * controller/tutorial.rb
 
-Let's see if our application is working, start it with the following command::
+Let's see if our application is working, start it with the following command:
 
     $ ramaze start
 
 If everything went well the output of this command should look like the
-following::
+following:
 
     [2011-05-24 17:37:31] INFO  WEBrick 1.3.1
     [2011-05-24 17:37:31] INFO  ruby 1.9.2 (2011-02-18) [x86_64-darwin10.7.0]
@@ -168,7 +168,7 @@ configuration options in a class, don't worry about it for now.
 Obviously a plain text message is boring, let's get started with "views". Views
 are files that will contain the presentation layer (usually HTML) of your
 application. In order to create a view we'll have to create a view directory
-first::
+first:
 
     $ mkdir view/
 
@@ -177,7 +177,7 @@ name and is placed in the correct directory. In this case our method is called
 "index" and the controller is mapped to /. This means that our view would be
 located in view/index.xhtml. If our method was named "default" the view would
 be in view/default.xhtml. If the controller was mapped to /cookie the view would
-be located in view/cookie.index.xhtml and so on. Let's create and edit the file::
+be located in view/cookie.index.xhtml and so on. Let's create and edit the file:
 
     $ touch view/index.xhtml
     $ $EDITOR view/index.xhtml
@@ -226,7 +226,7 @@ In order for us to be able to use the console we'll have to add a new file to
 our project, called "start.rb". start.rb works the same as config.ru but
 instead of being used for Rackup it's used to tell Ramaze how to run it in IRB.
 Create the file and open it in your editor ($EDITOR is the command used for
-opening a file in your editor)::
+opening a file in your editor):
 
     $ touch start.rb
     $ $EDITOR start.rb
@@ -244,13 +244,13 @@ Don't bother too much about this file as it's pretty boring, save it and leave
 it alone.
 
 Now that we've added the required file we can invoke the console. This is done
-as following::
+as following:
 
     $ ramaze console
     ruby-1.9.2-p180 :001 >
 
 You can use the console for everything you'd normally use IRB for but it comes
-with the added value of being able to do Ramaze specific things::
+with the added value of being able to do Ramaze specific things:
 
     ruby-1.9.2-p180 :001 > Ramaze.options.app.name
      => :pristine

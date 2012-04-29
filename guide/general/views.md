@@ -4,7 +4,7 @@
 Views are the last step in the process of a request to a MVC framework such as
 Ramaze. A controller loads a model, the model processes a certain amount of
 data and the controller will then pass this data to a view. The typical flow of
-a MVC framework (or any framework using a view system) looks like the following::
+a MVC framework (or any framework using a view system) looks like the following:
 
     Request --> Controller --> View
                   ^ |

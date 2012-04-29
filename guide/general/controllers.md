@@ -13,7 +13,7 @@ instead it will merely tell the cooks to make the dinner and bring it to you onc
 it's done. The waiter is our controller, the cook is our model and our meal can
 be seen as the view.
 
-In a typical application the entire flow of a request is as following::
+In a typical application the entire flow of a request is as following:
 
     Request --> Server (Thin, Unicorn, etc) --> Rack --> Ramaze --> Controller
 

@@ -7,7 +7,7 @@ in order to intercept and process sequentially each incoming request and outgoin
 response between Rack and Ramaze. You can think of a collection of middlewares
 as a stack at whose bottom lies your Ramaze app.
 
-The flow of a Rack request (including middlewares) looks as following::
+The flow of a Rack request (including middlewares) looks as following:
 
     Request --> Server (Thin, Unicorn, etc) --> Rack --> Middleware(s) -->
     Ramaze  --> Controller
