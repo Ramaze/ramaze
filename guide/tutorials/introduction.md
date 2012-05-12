@@ -7,7 +7,7 @@ a bit of an understanding what Ramaze really is and what it does. It's required
 that you've read the following chapters before reading this tutorial (or any of
 the other tutorials):
 
-* {file:README READE}
+* {file:README README}
 * {file:general/installation Installation}
 
 In this tutorial we'll cover te following:

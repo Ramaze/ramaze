@@ -33,14 +33,14 @@ module Ramaze
     # The form helper uses Gestalt, Ramaze's custom HTML builder that works
     # somewhat like Erector. The output is very minimalistic, elements such as
     # legends and fieldsets have to be added manually. Each combination of a
-    # label and input element will be wrapped in <p> tags.
+    # label and input element will be wrapped in `<p>` tags.
     #
     # When using the form helper as a block in your templates it's important to
     # remember that the result is returned and not displayed in the browser
     # directly. When using Etanni this would result in something like the
     # following:
     #
-    #     #{form_for(@result, :method => :post) do |f| do
+    #     #{form_for(@result, :method => :post) do |f|
     #       f.input_text 'Text label', :textname, 'Chunky bacon!'
     #     end}
     #
@@ -169,7 +169,7 @@ module Ramaze
         end
 
         ##
-        # Generate a <legend> tag.
+        # Generate a `<legend>` tag.
         #
         # @param [String] text The text to display inside the legend tag.
         # @example
@@ -317,7 +317,7 @@ module Ramaze
         # @option args [Array] :values An array containing the possible values
         #  for the checkboxes.
         # @option args [String/Symbol] :span_class The class to use for the
-        #  <span> element that's wrapped around the checkbox.
+        #  `<span>` element that's wrapped around the checkbox.
         # @option args [TrueClass/FalseClass] :show_value When set to false the
         #  value of each checkbox won't be displayed to the right of the
         #  checkbox. This option is set to true by default.
