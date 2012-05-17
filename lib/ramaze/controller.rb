@@ -148,10 +148,17 @@ module Ramaze
       return if chunks.empty?
 
       last = chunks.last
-      return IRREGULAR_MAPPING[last] if IRREGULAR_MAPPING.key?(last)
 
-      last.sub!(/Controller$/, '')
-      '/' << chunks.map{|chunk| chunk.snake_case }.join('/')
+      if IRREGULAR_MAPPING.key?(last)
+        irregular = IRREGULAR_MAPPING[last]
+        return irregular if irregular.nil?  || chunks.size == 1
+        chunks.pop
+        chunks << irregular
+      end
+
+      chunks.unshift ''
+      chunks.last.sub!(/Controller$/, '')
+      chunks.map{|chunk| chunk.snake_case }.join('/').squeeze('/')
     end
 
     ##

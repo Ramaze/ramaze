@@ -8,3 +8,6 @@ ydoc
 *.rbc
 database.db
 .rbx
+.idea/*
+*.iml
+.rbenv-version
