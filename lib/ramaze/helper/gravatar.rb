@@ -57,6 +57,8 @@ module Ramaze
       # @author manveru
       #
       def gravatar(email, opts = {})
+        # let's make email nil-proof so developer doesn't have to check
+        email ||= ""
         uri = URI("http://www.gravatar.com/")
         ext = opts[:ext]
         uri.path = "/avatar/#{Digest::MD5.hexdigest(email.to_str)}#{ext}"
