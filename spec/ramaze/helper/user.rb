@@ -33,6 +33,10 @@ class SpecUserHelper < Ramaze::Controller
   def profile
     user.profile
   end
+
+  def sid
+    session.sid
+  end
 end
 
 Arthur = {
@@ -74,4 +78,12 @@ describe Ramaze::Helper::UserHelper do
     get('/logout').status.should == 200
     get('/callback/status').body.should == 'no'
   end
+
+  should 'change sid after logout' do
+    get('/login?name=arthur&password=42').body.should == 'logged in'
+    oldsid = get('/sid').body
+    get('/logout').status.should == 200
+    get('/sid').body.should.not == oldsid
+  end
 end
+

@@ -249,6 +249,7 @@ module Ramaze
         def _logout
           (_persistence || {}).clear
           Current.request.env['ramaze.helper.user'] = nil
+          Current.session.resid!
         end
 
         ##
