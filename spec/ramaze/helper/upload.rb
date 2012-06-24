@@ -145,5 +145,6 @@ describe('Ramaze::Helper::Upload::UploadedFile') do
     file.save('/tmp/ramaze_uploads/text_1.txt')
 
     file.path.nil?.should === false
+    file.instance_variable_get("@realfile").closed?.should === true
   end
 end

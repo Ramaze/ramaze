@@ -493,6 +493,8 @@ module Ramaze
           # Update the realfile property, indicating that the file has been
           # saved
           @realfile = File.new(path)
+          # But no need to keep it open
+          @realfile.close
 
           # If the unlink_tempfile option is set to true, delete the temporary
           # file created by Rack
