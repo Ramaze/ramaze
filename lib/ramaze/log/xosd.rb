@@ -1,5 +1,5 @@
 #          Copyright (c) 2008 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 Ramaze::Log.log( :warn, "Both xosd gems are currently known to be broken" )
 require 'xosd'
@@ -7,12 +7,12 @@ require 'thread'
 
 module Ramaze
   module Logger
-
     ##
     # Informer for the XOSD notification system for X11.
     #
     # You can install the ruby-bindings with:
-    #   gem install xosd.
+    #
+    #     gem install xosd.
     #
     class Xosd < ::Xosd
       attr_accessor :options
@@ -89,7 +89,6 @@ module Ramaze
           QUEUE << [tag, message]
         end
       end
-    end
-
-  end
-end
+    end # Xosd
+  end # Logger
+end # Ramaze

@@ -1,9 +1,8 @@
 #          Copyright (c) 2008 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 module Ramaze
   module Logger
-
     ##
     # Bundles different informer instances and sends incoming messages to each.
     # This is the default with Informer as only member.
@@ -43,7 +42,6 @@ module Ramaze
           logger.log(tag, *args)
         end
       end
-    end
-
-  end
-end
+    end # Hub
+  end # log
+end # Ramaze

@@ -1,16 +1,13 @@
 #          Copyright (c) 2009 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 require File.expand_path('../../../../spec/helper', __FILE__)
 
-# Ignore this test on Mac OS X
-spec_precondition 'User isn\'t running Mac OS X' do
-  if RUBY_PLATFORM.include? 'darwin'
-    should.flunk "Localmemcache doesn't work on Mac OS X and thus this test will be ignored."
-  else
-    spec_require 'localmemcache'
-  end
+spec_precondition 'LocalMemcache should be supported' do
+  should.flunk if Ramaze::UNSUPPORTED_GEMS.include?('localmemcache')
 end
+
+spec_require 'localmemcache'
 
 describe Ramaze::Cache::LocalMemCache do
   Ramaze.options.cache.names = [:one, :two]

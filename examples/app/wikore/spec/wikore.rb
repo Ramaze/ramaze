@@ -1,5 +1,5 @@
 require 'ramaze'
-require 'ramaze/spec'
+require 'ramaze/spec/bacon'
 
 spec_requires 'hpricot', 'sequel'
 
@@ -7,7 +7,7 @@ $LOAD_PATH.unshift base = __DIR__('..')
 require 'start'
 
 describe 'Wikore' do
-  behaves_like :mock
+  behaves_like :rack_test
 
   def check_redirect(to = '/')
     response = yield

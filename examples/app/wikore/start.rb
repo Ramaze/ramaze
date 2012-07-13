@@ -3,7 +3,7 @@ require 'ramaze'
 
 $wikore = {}
 
-require 'src/model'
-require 'src/controller'
+require_relative 'src/model'
+require_relative 'src/controller'
 
 Ramaze.start :file => __FILE__

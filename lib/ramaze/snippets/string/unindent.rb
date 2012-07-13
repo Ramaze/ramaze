@@ -1,10 +1,7 @@
 module Ramaze
   module CoreExtensions
-
     # Extensions for String
-
     module String
-
       # Useful for writing indented String and unindent on demand, based on the
       # first line with indentation.
       def unindent
@@ -23,6 +20,6 @@ module Ramaze
         self.replace unindent
       end
       alias ui! unindent!
-    end
-  end
-end
+    end # String
+  end # CoreExtensions
+end # Ramaze

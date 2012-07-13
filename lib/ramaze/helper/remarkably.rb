@@ -9,6 +9,6 @@ module Ramaze
       def a(*args, &block)
         method_missing(:a, *args, &block)
       end
-    end
-  end
-end
+    end # Remarkably
+  end # Helper
+end # Ramaze

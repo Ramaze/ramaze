@@ -1,5 +1,5 @@
 #          Copyright (c) 2008 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 require 'openid'
 require 'openid/store/filesystem'
@@ -114,6 +114,6 @@ module Ramaze
       def openid_consumer
         OpenID::Consumer.new(session, Ramaze::OpenIDStore)
       end
-    end
-  end
-end
+    end # Identity
+  end # Helper
+end # Ramaze

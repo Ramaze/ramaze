@@ -1,5 +1,5 @@
 #          Copyright (c) 2009 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 require File.expand_path('../../../../spec/helper', __FILE__)
 
@@ -33,6 +33,10 @@ class SpecUserHelper < Ramaze::Controller
   def profile
     user.profile
   end
+
+  def sid
+    session.sid
+  end
 end
 
 Arthur = {
@@ -63,6 +67,7 @@ describe Ramaze::Helper::UserHelper do
     get('/status').body.should == 'yes'
     get('/profile').body.should == MockSequelUser.new.profile
     get('/logout').status.should == 200
+    get('/status').body.should == 'no'
   end
 
   should 'login via the callback' do
@@ -71,5 +76,14 @@ describe Ramaze::Helper::UserHelper do
     get('/callback/status').body.should == 'yes'
     get('/callback/profile').body.should == MockSequelUser.new.profile
     get('/logout').status.should == 200
+    get('/callback/status').body.should == 'no'
+  end
+
+  should 'change sid after logout' do
+    get('/login?name=arthur&password=42').body.should == 'logged in'
+    oldsid = get('/sid').body
+    get('/logout').status.should == 200
+    get('/sid').body.should.not == oldsid
   end
 end
+

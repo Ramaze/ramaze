@@ -6,7 +6,7 @@ task :authors do
     authors[[name, email]] += count.to_i
   end
 
-  File.open('doc/AUTHORS', 'w+') do |io|
+  File.open('guide/AUTHORS', 'w+') do |io|
     io.puts "Following persons have contributed to #{GEMSPEC.name}."
     io.puts '(Sorted by number of submitted patches, then alphabetically)'
     io.puts ''

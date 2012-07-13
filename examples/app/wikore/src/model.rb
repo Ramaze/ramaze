@@ -10,7 +10,7 @@ end
 Sequel::Model.plugin :schema
 
 module Model
-  PAGE_SCHEMA = lambda{
+  PAGE_SCHEMA = lambda{|db|
     primary_key :id
     boolean :active, :default => true
     text    :text
@@ -45,12 +45,6 @@ module Model
   end
 
   [Page, OldPage].each do |klass|
-    begin
-      klass.create_table
-    rescue Sequel::DatabaseError => e
-      if e.message !~ /table.*already exists/
-        raise e
-      end
-    end
+    klass.create_table?
   end
 end

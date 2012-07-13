@@ -1,6 +1,5 @@
 module Ramaze
   module Helper
-
     # Helps you building Gravatar URIs from an email address.
     #
     # For more information about gravatars, please see: http://gravatar.com
@@ -12,11 +11,9 @@ module Ramaze
     # It might not know about all the secret parameters (like 'force'), if you
     # find out more of these please consider contributing a patch.
     module Gravatar
-
       # API to build gravatar URIs from an email address (or any other String).
       #
       # @example Simple usage
-      #
       #   class Gravatars < Ramaze::Controller
       #     helper :gravatar
       #
@@ -55,11 +52,10 @@ module Ramaze
       #   identicons or the like
       #
       # @param [#to_str] email
-      #
       # @return [URI]
-      #
       # @see http://en.gravatar.com/site/implement/url
       # @author manveru
+      #
       def gravatar(email, opts = {})
         uri = URI("http://www.gravatar.com/")
         ext = opts[:ext]
@@ -74,6 +70,6 @@ module Ramaze
         uri.query = Rack::Utils.build_query(query) if query.any?
         uri
       end
-    end
-  end
-end
+    end # Gravatar
+  end # Helper
+end # Ramaze

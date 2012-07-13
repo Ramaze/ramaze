@@ -1,5 +1,5 @@
 #          Copyright (c) 2009 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 require File.expand_path('../../../../spec/helper', __FILE__)
 
@@ -50,7 +50,7 @@ describe 'Directory listing' do
    files = [
      ["../", "Parent Directory"],
      ["/favicon.ico", "favicon.ico"],
-     ["/file name.txt", "file name.txt"],
+     ["/file+name.txt", "file name.txt"],
      ["/test/", "test/"],
      ["/test_download.css", "test_download.css"]
    ]

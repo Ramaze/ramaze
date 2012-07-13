@@ -11,6 +11,6 @@ module Ramaze
       def maruku(text)
         ::Maruku.new(text.to_str).to_html
       end
-    end
-  end
-end
+    end # Maruku
+  end # Helper
+end # Ramaze

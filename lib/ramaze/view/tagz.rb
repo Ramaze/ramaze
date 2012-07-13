@@ -1,4 +1,6 @@
-require 'tagz'
+Ramaze.setup(:verbose => false) do
+  gem 'tagz'
+end
 
 module Ramaze
   module View
@@ -39,11 +41,15 @@ module Ramaze
         end
 
         def p(*a)
-          a.each{|elem| tagz << "#{ Rack::Utils.escape_html elem.inspect }#{ eol }"}
+          a.each do |elem|
+            tagz << "#{ Rack::Utils.escape_html elem.inspect }#{ eol }"
+          end
         end
 
         def pp(*a)
-          a.each{|elem| tagz << "#{ Rack::Utils.escape_html PP.pp(elem, '') }#{ eol }"}
+          a.each do |elem|
+            tagz << "#{ Rack::Utils.escape_html PP.pp(elem, '') }#{ eol }"
+          end
         end
 
         def eol
@@ -58,6 +64,6 @@ module Ramaze
           concat eol
         end
       end
-    end
-  end
-end
+    end # Tagz
+  end # View
+end # Ramaze

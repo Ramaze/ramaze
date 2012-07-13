@@ -1,5 +1,5 @@
 #          Copyright (c) 2009 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 require File.expand_path('../../../../spec/helper', __FILE__)
 spec_require 'sequel'
@@ -27,7 +27,7 @@ describe Ramaze::Cache::Sequel do
     cache.fetch(:hello).should == nil
   end
 
-  should 'Dlete two key/value pairs at once' do
+  should 'Delete two key/value pairs at once' do
     cache.store(:hello, hello).should.equal hello
     cache.store(:ramaze, 'ramaze').should.equal 'ramaze'
     cache.delete(:hello, :ramaze)
@@ -36,9 +36,9 @@ describe Ramaze::Cache::Sequel do
   end
 
   should 'Store some data with a TTL' do
-    cache.store(:hello, @hello, :ttl => 0.2)
+    cache.store(:hello, @hello, :ttl => 1)
     cache.fetch(:hello).should.equal @hello
-    sleep 0.3
+    sleep 2
     cache.fetch(:hello).should.equal nil
   end
 
@@ -47,5 +47,12 @@ describe Ramaze::Cache::Sequel do
     cache.fetch(:hello).should.equal @hello
     cache.clear
     cache.fetch(:hello).should.equal nil
+  end
+
+  should 'use a custom set of options' do
+    klass = Ramaze::Cache::Sequel.using(:answer => 42)
+
+    klass.options[:answer].should     === 42
+    klass.new.options[:answer].should === 42
   end
 end

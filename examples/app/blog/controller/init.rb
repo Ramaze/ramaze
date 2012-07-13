@@ -1,88 +1,30 @@
-module Blog
-  class Controller < Ramaze::Controller
-    engine :Nagoro
-    layout(:default){|path, wish| wish !~ /rss|atom/ }
-    map_layouts '/'
-    map nil, :blog
-    app.location = '/'
-    trait :app => :blog
-    helper :form, :auth, :formatting
+##
+# Base controller that provides a few things used by sub controllers throughout
+# this example application.
+#
+# @since  26-09-2011
+#
+class BaseController < Ramaze::Controller
+  engine :etanni
+  layout :default
+  helper :blue_form, :user, :xhtml, :paginate
 
-    trait :auth_table => lambda{
-      password = Digest::SHA1.hexdigest(Blog.options.admin.password)
-      {Blog.options.admin.name => password}
-    }
+  # Configures the Paginate helper so that it shows a maximum of 10 posts per
+  # page and uses the "page" query string key to determine the current page.
+  # This will result in URLs such as /posts?page=2. Note that when calling the
+  # paginate() method you can override these settings.
+  trait :paginate => {
+    :var   => 'page',
+    :limit => 10
+  }
 
-    private
-
-    def author_url
-      Blog.options.author.url || request.domain(Main.r('/'))
-    end
-
-    def sidebar
-      out = Ramaze::Gestalt.new
-
-      Blog.options.sidebar.elements.each do |element|
-        name, title, *contents = __send__("sidebar_#{element}")
-
-        out.ul(:class => name) do
-          out.li(:class => :title){ title }
-          contents.flatten.each do |content|
-            out.li{ content.to_s }
-          end
-        end
-      end
-
-      out.to_s
-    end
-
-    def sidebar_bio
-      return :bio, 'About me', Blog.options.sidebar.bio.text.to_s
-    end
-
-    def sidebar_admin
-      if logged_in?
-        links =  [ a('New entry', Entries.r(:new)),
-                   a('Logout', Main.r(:logout))   ]
-        return :actions, 'Administration', links
-      else
-        return :login, 'Login', <<FORM.strip
-<form method="post" action="#{r :login}">
-  #{form_text 'Username', :username}
-  #{form_password 'Password', :password}
-  #{form_submit 'Login'}
-</form>
-FORM
-      end
-    end
-
-    def sidebar_history
-      limit = 4; Blog.options.sidebar.history.size
-      entries = Entry.select(:id, :title).order(:published.desc).limit(limit)
-
-      return :history, 'History',
-        entries.map{|e| a(e.title, e.href) }
-    end
-
-    # Don't rel="tag" them, this is bad practice according to microformats
-    #
-    # The query makes sure that we only select tags that have entries
-    # associated with them.
-    def sidebar_tagcloud
-      tags = Tag.filter(:id => EntriesTags.select(:tag_id)).select(:name).map(:name)
-      cloud = []
-
-      tagcloud(tags, 0.8, 2.0).each do |tag, weight|
-        style = "font-size: %0.2fem" % weight
-        cloud << "<a href='#{Tags.r(tag)}' style='#{style}'>#{h(tag)}</a>"
-      end
-
-      return :tagcloud, 'Tags', cloud.sort.join("\n")
-    end
-  end
+  # Tells the User helper what model class should be used for the authenticate()
+  # method. By default this is already set to "User" so technically this isn't
+  # required but to make it easier to understand what's going on I decided to
+  # put it here.
+  trait :user_model => User
 end
 
-require 'controller/main'
-require 'controller/entry'
-require 'controller/tag'
-require 'controller/comment'
+# Load all other controllers
+require __DIR__('posts')
+require __DIR__('users')

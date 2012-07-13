@@ -1,8 +1,6 @@
 module Ramaze
   module CoreExtensions
-
     # Extensions for Numeric
-
     module Numeric
       def seconds
         self
@@ -56,8 +54,6 @@ module Ramaze
         t + self
       end
       alias since from_now
-
-    end
-
-  end
-end
+    end # Numeric
+  end # CoreExtensions
+end # Ramaze

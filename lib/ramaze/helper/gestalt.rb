@@ -2,8 +2,8 @@ require 'ramaze/gestalt'
 
 module Ramaze
   module Helper
-    ##
-    # Gestalt is the custom HTML/XML builder for Ramaze, based on a very simple DSL it will build your markup.
+    # Gestalt is the custom HTML/XML builder for Ramaze, based on a very simple 
+    # DSL it will build your markup.
     module Gestalt
       CACHE_G = {}
 

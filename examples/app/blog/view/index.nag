@@ -1,6 +1,0 @@
-<div id="entries">
-  <?r @pager.each do |entry| ?>
-    #{Blog::Entries.render_partial(:show, :entry => entry)}
-  <?r end ?>
-  #{ @pager.navigation if @pager.needed? }
-</div>

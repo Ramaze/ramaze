@@ -1,5 +1,5 @@
 #          Copyright (c) 2009 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 require File.expand_path('../../../../spec/helper', __FILE__)
 
@@ -20,7 +20,8 @@ class SpecHelperAuth < Ramaze::Controller
   def secured
     "Secret content"
   end
-  before(:secured){ login_required }
+
+  before(:secured) { login_required }
 end
 
 class SpecHelperAuthHash < SpecHelperAuth
@@ -43,9 +44,9 @@ end
 
 class SpecHelperAuthLambda < SpecHelperAuth
   map '/lambda'
-  trait :auth_table => lambda{
-      { 'manveru' => $password }
-    }
+  trait :auth_table => lambda {
+    { 'manveru' => $password }
+  }
 end
 
 describe Ramaze::Helper::Auth do
@@ -57,26 +58,26 @@ describe Ramaze::Helper::Auth do
         get "/#{prefix}/secured"
         follow_redirect!
         last_response.status.should == 200
-        last_response.body.should =~ (/<form/)
+        last_response.body.should   =~ (/<form/)
 
         post("/#{prefix}/login", 'username' => 'manveru', 'password' => 'pass')
         follow_redirect!
         last_response.status.should == 200
-        last_response.body.should == 'Secret content'
+        last_response.body.should   == 'Secret content'
 
         get "/#{prefix}/secured"
         last_response.status.should == 200
-        last_response.body.should == 'Secret content'
+        last_response.body.should   == 'Secret content'
 
         get "/#{prefix}/logout"
         follow_redirect!
         last_response.status.should == 200
-        last_response.body.should == 'SpecHelperAuth'
+        last_response.body.should   == 'SpecHelperAuth'
 
         get "/#{prefix}/secured"
         follow_redirect!
         last_response.status.should == 200
-        last_response.body.should =~ (/<form/)
+        last_response.body.should   =~ (/<form/)
       end
     end
   end

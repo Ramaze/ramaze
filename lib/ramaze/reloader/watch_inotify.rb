@@ -1,5 +1,6 @@
 module Ramaze
   class Reloader
+    ##
     # TODO:
     #   * There seems to be a problem somewhere that I couldn't identify yet, a
     #     file has to be modified twice initially to make it show up as
@@ -11,7 +12,6 @@ module Ramaze
     # NOTE:
     #   * I have changed from using a Mutex to using a Queue, which uses a
     #     Mutex internally.
-
     class WatchInotify
       POLL_INTERVAL = 2 # seconds
       NOTIFY_MASK = RInotify::MODIFY | RInotify::IN_ONESHOT
@@ -54,7 +54,6 @@ module Ramaze
       # FIXME:
       #   Seems like this won't work due to some bug in the rinotify library.
       #   Would be cool if someone could make a FFI version.
-
       def remove_watch(file)
         @watcher.rm_watch(file)
       end
@@ -80,6 +79,6 @@ module Ramaze
           yield(file)
         end
       end
-    end
-  end
-end
+    end # WatchInotify
+  end # Reloader
+end # Ramaze

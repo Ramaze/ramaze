@@ -1,5 +1,5 @@
 #          Copyright (c) 2008 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 require 'swiftcore/Analogger/Client'
 
@@ -31,7 +31,8 @@ module Ramaze
       # @param [String] host The IP/hostname on which the logging system is running.
       # @param [Integer] port The port of the logging system.
       #
-      def initialize(name = class_trait[:name], host = class_trait[:host], port = class_trait[:port])
+      def initialize(name = class_trait[:name], host = class_trait[:host], 
+      port = class_trait[:port])
         super
       end
 
@@ -44,6 +45,6 @@ module Ramaze
       def log(tag, *args)
         super(tag, args.join("\n"))
       end
-    end
-  end
-end
+    end # Analogger
+  end # Log
+end # Ramaze

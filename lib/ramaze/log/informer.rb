@@ -1,5 +1,5 @@
 #          Copyright (c) 2008 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 module Ramaze
   module Logger
@@ -37,15 +37,19 @@ module Ramaze
       #
       # @example
       #
-      #   Informer.new                    #=> logs to stdout with all levels being
-      #                                       shown.
-      #   Informer.new($stderr)           #=> same, but to stderr
-      #   Informer.new("foo.log")         #=> same, but logs to the file foo.log
-      #                                       (or creates it if it doesn't exist yet)
-      #   Informer.new($stdout, [:info])  #=> show only #info messages to stdout.
+      #   Informer.new          # => logs to stdout with all levels being shown.
+      #   Informer.new($stderr) # => same, but to stderr
       #
-      # @param [String] out Specifies where the output should go. By default this is set to STDOUT.
-      # @param [Array] log_leves Array containing the levels that should be logged.
+      #   # same, but logs to the file foo.log (or creates it if it doesn't 
+      #   # exist yet)
+      #   Informer.new("foo.log")
+      #
+      #   Informer.new($stdout, [:info]) #=> show only #info messages to stdout.
+      #
+      # @param [String] out Specifies where the output should go. By default 
+      #  this is set to STDOUT.
+      # @param [Array] log_leves Array containing the levels that should be 
+      #  logged.
       #
       def initialize(out = $stdout, log_levels = [:debug, :error, :info, :warn])
         @colorize = false
@@ -140,7 +144,6 @@ module Ramaze
       def closed?
         @out.respond_to?(:closed?) and @out.closed?
       end
-    end
-
-  end
-end
+    end # Informer
+  end # Log
+end # Ramaze

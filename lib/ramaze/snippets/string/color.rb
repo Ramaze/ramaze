@@ -1,5 +1,5 @@
 #          Copyright (c) 2008 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 module Ramaze
   module CoreExtensions
@@ -25,7 +25,6 @@ module Ramaze
           "\e[#{value}m" + self + "\e[0m"
         end
       end
-    end
-
-  end
-end
+    end # String
+  end # CoreExtensions
+end # Ramaze

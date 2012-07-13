@@ -1,13 +1,11 @@
 #          Copyright (c) 2008 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 module Ramaze
-
   ##
   # This module provides a basic skeleton for your own loggers to be compatible.
   # 
   # @example
-  #
   #   class MyLogger
   #     include Logging
   #
@@ -17,7 +15,6 @@ module Ramaze
   #   end
   #
   module Logging
-
     ##
     # Takes the tag (:warn|:debug|:error|:info) and the name of a method to be
     # called upon elements of msgs that don't respond to :to_str
@@ -38,7 +35,8 @@ module Ramaze
     ##
     # Converts everything given to strings and passes them on with :info
     #
-    # @param [Array] objects An array of objects that need to be converted to strings.
+    # @param [Array] objects An array of objects that need to be converted to 
+    #  strings.
     #
     def info(*objects)
       tag_log(:info, :to_s, *objects)
@@ -47,7 +45,8 @@ module Ramaze
     ##
     # Converts everything given to strings and passes them on with :warn
     #
-    # @param [Array] objects An array of objects that need to be converted to strings.
+    # @param [Array] objects An array of objects that need to be converted to 
+    #  strings.
     #
     def warn(*objects)
       tag_log(:warn, :to_s, *objects)
@@ -104,6 +103,5 @@ module Ramaze
     def debug?
       false
     end
-  end
-
-end
+  end # Logging
+end # Ramaze

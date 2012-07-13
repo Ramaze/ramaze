@@ -1,8 +1,16 @@
+Ramaze.setup(:verbose => false) do
+  gem 'haml'
+end
+
 require 'haml/util'
 require 'haml/engine'
 
 module Ramaze
   module View
+    ##
+    # View adapter that allows views to use Haml, for more information see the
+    # following website: http://haml-lang.com/
+    #
     module Haml
       def self.call(action, string)
         options = action.options
@@ -17,6 +25,6 @@ module Ramaze
 
         return html, 'text/html'
       end
-    end
-  end
-end
+    end # Haml
+  end # View
+end # Ramaze

@@ -1,7 +1,13 @@
-require 'ezamar'
+Ramaze.setup(:verbose => false) do
+  gem 'ezamar'
+end
 
 module Ramaze
   module View
+    ##
+    # View adapter for the Ezamar template engine. More information about this
+    # engine can be found here: https://github.com/manveru/ezamar
+    #
     module Ezamar
       TRANSFORM_PIPELINE = [ ::Ezamar::Element ]
 
@@ -18,6 +24,6 @@ module Ramaze
 
         ::Ezamar::Template.new(template, :file => file)
       end
-    end
-  end
-end
+    end # Ezamar
+  end # View
+end # Ramaze

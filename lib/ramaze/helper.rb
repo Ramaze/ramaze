@@ -1,9 +1,7 @@
 #          Copyright (c) 2009 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
-
+# All files in this distribution are subject to the terms of the MIT license.
 require 'innate/helper'
 
-# TODO: Describe what this module does besides loading a few default helper.
 module Ramaze
   Helper = Innate::Helper
   Innate::HelpersHelper.options.paths << File.dirname(__FILE__)

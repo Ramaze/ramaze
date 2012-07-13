@@ -1,5 +1,5 @@
 #          Copyright (c) 2009 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 require 'innate/helper/link'
 
@@ -16,9 +16,10 @@ module Ramaze
         [prefix, location].join('/')
       end
 
-      # Give it a path with character to split at and one to join the crumbs with.
-      # It will generate a list of links that act as pointers to previous pages on
-      # this path.
+      ##
+      # Give it a path with character to split at and one to join the crumbs
+      # with.  It will generate a list of links that act as pointers to previous
+      # pages on this path.
       #
       # @example usage
       #   breadcrumbs('/path/to/somewhere')
@@ -51,6 +52,6 @@ module Ramaze
         end
         bread.join(join)
       end
-    end
-  end
-end
+    end # Link
+  end # Helper
+end # Ramaze

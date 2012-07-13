@@ -1,3 +1,7 @@
+Ramaze.setup(:verbose => false) do
+  gem 'Remarkably', :lib => 'remarkably'
+end
+
 require 'remarkably/engines/html'
 
 module Ramaze

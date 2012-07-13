@@ -1,13 +1,11 @@
 #          Copyright (c) 2008 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 require 'pp'
 
 module Ramaze
   module CoreExtensions
-
     # Extensions for Kernel
-
     module Kernel
       unless defined?(pretty_inspect)
         # returns a pretty printed object as a string.
@@ -15,7 +13,6 @@ module Ramaze
           PP.pp(self, '')
         end
       end
-    end
-
-  end
-end
+    end # Kernel
+  end # CoreExtensions
+end # Ramaze

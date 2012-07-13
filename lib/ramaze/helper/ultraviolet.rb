@@ -11,9 +11,11 @@ module Ramaze
         :headers      => false, # ouput document with all headers
       }
 
+      ##
       # Parse and output the file at the given path.
       # Please head over to the Ultraviolet documentation for more information
       # on possible options.
+      #
       def ultraviolet(path, options = {})
         o = ancestral_trait[:ultraviolet].merge(options)
         output, syntax, lines, style, headers =
@@ -26,6 +28,7 @@ module Ramaze
         Uv.parse(code, output, syntax, lines, style, headers)
       end
 
+      ##
       # Return absolute path to the css of given name.
       #
       # Usually this will point to somewhere in the gem tree.
@@ -33,7 +36,7 @@ module Ramaze
       # It seems like Uv will add support for user-defined PATH in the future,
       # so we will, to be future-proof, traverse the Uv.path even though it
       # currently will only have one directory.
-
+      #
       def ultraviolet_css(theme)
         Uv.path.each do |path|
           Dir[path/"render/xhtml/files/css/*.css"].each do |css|
@@ -41,6 +44,6 @@ module Ramaze
           end
         end
       end
-    end
-  end
-end
+    end # UltraViolet
+  end # Helper
+end # Ramaze

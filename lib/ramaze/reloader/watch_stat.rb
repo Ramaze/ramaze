@@ -53,6 +53,6 @@ module Ramaze
       rescue Errno::ENOENT, Errno::ENOTDIR
         nil
       end
-    end
-  end
-end
+    end # WatchStat
+  end # Reloader
+end # Ramaze

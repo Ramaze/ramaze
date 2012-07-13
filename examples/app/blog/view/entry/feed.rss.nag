@@ -1,7 +1,0 @@
-<item>
-  <title>#{ h @entry.title }</title>
-  <guid>#{ @entry.href }</guid>
-  <description>#{ h @entry.to_html }</description>
-  <pubDate>#{ @entry.published.iso8601 }</pubDate>
-  <author>#{Blog.options.author.name}, (#{ Blog.options.author.email })</author>
-</item>

@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
 #          Copyright (c) 2008 rob@rebeltechnologies.nl
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 require File.expand_path('../../../../spec/helper', __FILE__)
+
+spec_precondition 'Syslog should be supported' do
+  if Ramaze::UNSUPPORTED_GEMS.include?('syslog')
+    should.flunk 'Forking/Syslog is not supported'
+  end
+end
 
 require 'ramaze/log/syslog'
 

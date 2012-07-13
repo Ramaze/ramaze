@@ -1,8 +1,8 @@
 #          Copyright (c) 2008 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 module Ramaze
-
+  ##
   # High performant source reloader
   #
   # This class acts as Rack middleware.
@@ -25,7 +25,7 @@ module Ramaze
   #
   # A number of hooks will be executed during the reload cycle, see
   # Ramaze::ReloaderHooks for more information.
-
+  #
   class Reloader
     OPTIONS = {
       # At most check every n seconds
@@ -60,6 +60,14 @@ module Ramaze
       Watcher = WatchStat
     end
 
+    ##
+    # Creates a new instance of the class and saves the application it has to
+    # watch.
+    #
+    # @author Michael Fellinger
+    # @since  09-08-2008
+    # @param  [Ramaze::App] app The application to monitor.
+    #
     def initialize(app)
       @app = app
       @files = {}
@@ -67,11 +75,25 @@ module Ramaze
       options_reload
     end
 
+    ##
+    # Returns all the options for this class.
+    #
+    # @author Michael Fellinger
+    # @since  09-08-2008
+    # @return [Array]
+    #
     def options_reload
       @cooldown, @ignore, @control, @thread =
         OPTIONS.values_at(:cooldown, :ignore, :control, :thread)
     end
 
+    ##
+    # Allows this class to be called as a Rack middleware.
+    #
+    # @author Michael Fellinger
+    # @since  09-08-2008
+    # @param  [Hash] env A hash containing all environment details.
+    #
     def call(env)
       options_reload
 
@@ -88,6 +110,12 @@ module Ramaze
       @app.call(env)
     end
 
+    ##
+    # Loops through all the files and reloads all changes files.
+    #
+    # @author Michael Fellinger
+    # @since  09-08-2008
+    #
     def cycle
       before_cycle
 
@@ -97,7 +125,13 @@ module Ramaze
       after_cycle
     end
 
+    ##
     # A safe Kernel::load, issuing the hooks depending on the results
+    #
+    # @author Michael Fellinger
+    # @since  09-08-2008
+    # @param  [String] file Path to the file to safely load.
+    #
     def safe_load(file)
       before_safe_load(file)
       load(file)
@@ -120,6 +154,15 @@ module Ramaze
       end
     end
 
+    ##
+    # Tries to find a given file in an array of file paths.
+    #
+    # @author Michael Fellinger
+    # @since  09-08-2008
+    # @param  [String] file The name of the file to look for.
+    # @param  [Array] paths An array of paths to search.
+    # @return [String]
+    #
     def figure_path(file, paths)
       if Pathname.new(file).absolute?
         return File.exist?(file) ? file : nil
@@ -132,16 +175,13 @@ module Ramaze
       nil
     end
 
-
     # Holds hooks that are called before and after #cycle and #safe_load
     module Hooks
       # Overwrite to add actions before the reload rotation is started.
-      def before_cycle
-      end
+      def before_cycle; end
 
       # Overwrite to add actions after the reload rotation has ended.
-      def after_cycle
-      end
+      def after_cycle; end
 
       # Overwrite to add actions before a file is Kernel::load-ed
       def before_safe_load(file)
@@ -149,7 +189,8 @@ module Ramaze
       end
 
       # Overwrite to add actions after a file is Kernel::load-ed successfully,
-      # by default we clean the Cache for compiled templates and resolved actions.
+      # by default we clean the Cache for compiled templates and resolved
+      # actions.
       def after_safe_load_succeed(file)
         Cache.clear_after_reload
         after_safe_load(file)
@@ -164,9 +205,8 @@ module Ramaze
       def after_safe_load_failed(file, error)
         Log.error(error)
       end
-    end
+    end # Hooks
 
     include Hooks
-
-  end
-end
+  end # Reloader
+end # Ramaze

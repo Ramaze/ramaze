@@ -1,9 +1,8 @@
 #          Copyright (c) 2008 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 module Ramaze
   module CoreExtensions
-
     # Extensions for Numeric
     module Numeric
       FILESIZE_FORMAT = [
@@ -26,7 +25,6 @@ module Ramaze
 
         self.to_s
       end
-    end
-
-  end
-end
+    end # Numeric
+  end # CoreExtensions
+end # Ramaze

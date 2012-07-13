@@ -1,11 +1,10 @@
 #          Copyright (c) 2008 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 require 'logger'
 
 module Ramaze
   module Logger
-
     ##
     # Informer for the Stdlib Logger.
     #
@@ -28,7 +27,6 @@ module Ramaze
       def dev(*args)
         debug(*args)
       end
-    end
-
-  end
-end
+    end # Logger
+  end # Logger
+end # Ramaze

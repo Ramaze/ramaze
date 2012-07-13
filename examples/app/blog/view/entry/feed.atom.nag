@@ -1,8 +1,0 @@
-<entry>
-  <title>#{ h @entry.title }</title>
-  <link href='#{ request.domain @entry.href }' />
-  <id>#{ "#{ Blog.options.uuid }#{ @entry.href }" }</id>
-  <updated>#{ @entry.updated.iso8601 }</updated>
-  <summary>#{ @entry.summary }</summary>
-  <content type="html">#{ h(Maruku.new(@entry.content).to_html) }</content>
-</entry>

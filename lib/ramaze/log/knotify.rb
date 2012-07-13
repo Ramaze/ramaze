@@ -1,9 +1,8 @@
 #          Copyright (c) 2008 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 module Ramaze
   module Logger
-
     ##
     # Informer for the Knotify notfication system used on KDE.
     # Doesn't need any special libraries.
@@ -27,7 +26,6 @@ module Ramaze
           system(%{dcop knotify default notify Ramaze "#{tag}" "#{message}" '' '' #{present} 0})
         end
       end
-    end
-
-  end
-end
+    end # Knotify
+  end # Logger
+end # Ramaze

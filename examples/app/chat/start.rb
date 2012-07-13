@@ -1,8 +1,8 @@
 require 'rubygems'
 require 'ramaze'
 
-require 'model/history'
-require 'model/message'
+require __DIR__ 'model/history'
+require __DIR__ 'model/message'
 
 class ChatRoom < Ramaze::Controller
   map '/'

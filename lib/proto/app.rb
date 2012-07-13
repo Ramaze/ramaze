@@ -1,8 +1,7 @@
-# This file contains your application, it requires dependencies and necessary
-# parts of the application.
+# This file contains your application, it requires dependencies and necessary parts of 
+# the application.
 #
 # It will be required from either `config.ru` or `start.rb`
-
 require 'rubygems'
 require 'ramaze'
 

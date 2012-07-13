@@ -21,7 +21,6 @@ module Ramaze
   # Copyright (c) 2009  Michael Fellinger  <manveru@rubyists.com>
   #
   # You may redistribute it and/or modify it under the same terms as Ruby.
-
   class LRUHash < Struct.new(:max_total, :max_value, :max_count, :expiration,
                               :hook, :objs, :total_size, :list, :hits, :misses)
     CacheObject = Struct.new(:content, :size, :atime)
@@ -244,5 +243,5 @@ module Ramaze
         raise ArgumentError, "invalid expiration `#{expiration}'"
       end
     end
-  end
-end
+  end # LRUHash
+end # Ramaze

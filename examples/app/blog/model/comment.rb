@@ -1,58 +1,42 @@
-module Blog
-  class Comment < Sequel::Model
-    set_schema do
-      primary_key :id
+##
+# The Comment model is used for creating and managing comments.
+#
+# @since  26-09-2011
+#
+class Comment < Sequel::Model
+  plugin :timestamps, :create => :created_at, :update => :updated_at
 
-      # on update
-      varchar :author
-      varchar :email
-      varchar :homepage
-      text :content
+  # A comment can belong to only one post and one user
+  many_to_one :post
+  many_to_one :user
 
-      # system
-      time :published
-      time :updated
-      boolean :public, :default => true
+  ##
+  # Validates a comment before saving it to the database.
+  #
+  # @since  26-09-2011
+  #
+  def validate
+    validates_presence(:comment)
 
-      foreign_key :entry_id
-    end
-
-    many_to_one :entry, :class => 'Blog::Entry'
-
-    create_table unless table_exists?
-
-    before_save{ self.updated = Time.now }
-    before_create{ self.published = Time.now }
-
-    validations.clear
-
-    validates do
-      length_of :author, :within => (2..255)
-      # yay, reddit! we should rather set a minimum like:
-      # "I, for one, welcome our new x overlords.".size
-      length_of :content, :minimum => 2
-
-      # a@b.c anyone know a domain like that?
-      length_of :email, :within => (5..255)
-      format_of :email, :with => /^([^@\s]{1}+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
-
-      format_of :homepage, :with => /^https?:\/\/[^\s\/]+\.[^\s\/]+/
-    end
-
-    def href
-      Entries.r(:/, "#{entry.slug}#comment-#{id}")
-    end
-
-    def update(entry, hash)
-      return unless entry
-
-      [:author, :email, :homepage, :content].each do |key|
-        self[key] = hash[key]
-      end
-
-      return unless valid?
-      save
-      entry.add_comment(self)
+    # Comments can either have user ID or a custom name. The user ID is only set
+    # when the user is logged in.
+    unless self.user_id
+      validates_presence(:username)
     end
   end
-end
+
+  ##
+  # Gets the name of the author from either an associated user or the "name"
+  # field.
+  #
+  # @since  26-09-2011
+  # @return [String]
+  #
+  def username
+    if user and user.username
+      return user.username
+    else
+      return super
+    end
+  end
+end # Comment

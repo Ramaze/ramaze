@@ -1,5 +1,5 @@
 #          Copyright (c) 2009 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 # Namespace for Ramaze
 #
@@ -12,15 +12,15 @@
 module Ramaze
   ROOT = File.expand_path(File.dirname(__FILE__)) unless defined?(Ramaze::ROOT)
 
-  unless $LOAD_PATH.any?{|lp| File.expand_path(lp) == ROOT }
-    $LOAD_PATH.unshift(ROOT)
-  end
-
   # 3rd party
   require 'innate'
 
   @options = Innate.options
   class << self; attr_accessor :options; end
+
+  unless $LOAD_PATH.any?{|lp| File.expand_path(lp) == ROOT }
+    $LOAD_PATH.unshift(ROOT)
+  end
 
   # vendored, will go into rack-contrib
   require 'vendor/route_exceptions'
@@ -66,7 +66,14 @@ module Ramaze
     m.use Rack::ShowStatus
     m.use Rack::RouteExceptions
     m.use Rack::ConditionalGet
-    m.use Rack::ETag
+
+    # FIXME: This works around differences between Rack 1.2.1 and the git HEAD
+    if Rack::ETag.instance_method(:initialize).arity == 1
+      m.use Rack::ETag
+    else
+      m.use Rack::ETag, 'public'
+    end
+
     m.use Rack::Head
     m.use Ramaze::Reloader
     m.run Ramaze::AppMap
@@ -77,7 +84,14 @@ module Ramaze
     m.use Rack::RouteExceptions
     m.use Rack::ShowStatus
     m.use Rack::ConditionalGet
-    m.use Rack::ETag
+
+    # FIXME: This works around differences between Rack 1.2.1 and the git HEAD
+    if Rack::ETag.instance_method(:initialize).arity == 1
+      m.use Rack::ETag
+    else
+      m.use Rack::ETag, 'public'
+    end
+
     m.use Rack::Head
     m.run Ramaze::AppMap
   end

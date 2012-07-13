@@ -1,10 +1,15 @@
 #          Copyright (c) 2009 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
-
-require 'erubis'
+# All files in this distribution are subject to the terms of the MIT license.
+Ramaze.setup(:verbose => false) do
+  gem 'erubis'
+end
 
 module Ramaze
   module View
+    ##
+    # View adapter for the Erubis template engine. More information about Erubis
+    # can be found here: http://www.kuwata-lab.com/erubis/
+    #
     module Erubis
       OPTIONS = { :engine => ::Erubis::Eruby }
 
@@ -18,6 +23,6 @@ module Ramaze
 
         return html, 'text/html'
       end
-    end
-  end
-end
+    end # Erubis
+  end # View
+end # Ramaze

@@ -1,7 +1,8 @@
 #          Copyright (c) 2009 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
-
-require 'liquid'
+# All files in this distribution are subject to the terms of the MIT license.
+Ramaze.setup(:verbose => false) do
+  require 'liquid'
+end
 
 module Ramaze
   module View
@@ -95,6 +96,6 @@ module Ramaze
         @arg =~ /^(['"])(.*?)\1\s+(.*)/
         Ramaze::Current.action.node.anchor($2, $3)
       end
-    end
-  end
-end
+    end # Liquid
+  end # View
+end # Ramaze

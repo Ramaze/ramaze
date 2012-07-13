@@ -1,14 +1,12 @@
 #          Copyright (c) 2009 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 module Ramaze
-
   ##
   # Gestalt is the custom HTML/XML builder for Ramaze, based on a very simple
   # DSL it will build your markup.
   #
   # @example
-  #
   #   html =
   #     Gestalt.build do
   #       html do
@@ -28,7 +26,7 @@ module Ramaze
     # The default way to start building your markup.
     # Takes a block and returns the markup.
     #
-    # @param [Block] block 
+    # @param [Block] block
     #
     def self.build(&block)
       self.new(&block).to_s
@@ -62,17 +60,19 @@ module Ramaze
     ##
     # Workaround for Kernel#p to make <p /> tags possible.
     #
-    # @param [Hash] args Extra arguments that should be processed before creating the paragraph tag.
+    # @param [Hash] args Extra arguments that should be processed before
+    #  creating the paragraph tag.
     # @param [Block] block
     #
     def p(*args, &block)
       _gestalt_call_tag :p, args, &block
     end
-    
+
     ##
     # Workaround for Kernel#select to make <select></select> work.
     #
-    # @param [Hash] args Extra arguments that should be processed before creating the select tag.
+    # @param [Hash] args Extra arguments that should be processed before
+    #  creating the select tag.
     # @param [Block] block
     #
     def select(*args, &block)
@@ -80,7 +80,7 @@ module Ramaze
     end
 
     ##
-    # TODO: Describe this method, I'm not exactly sure what it does - Yorick
+    # Calls a particular tag based on the specified parameters.
     #
     # @param [String] name
     # @param [Hash] args
@@ -102,8 +102,6 @@ module Ramaze
     ##
     # Build a tag for `name`, using `args` and an optional block that
     # will be yielded.
-    #
-    # TODO: Describe this method since I'm not exactly sure what it does - Yorick
     #
     # @param [String] name
     # @param [Hash] attr
@@ -139,7 +137,7 @@ module Ramaze
     end
 
     ##
-    # TODO: Describe this method since I'm not exactly sure what it does - Yorick
+    # Shortcut for building tags,
     #
     # @param [String] name
     # @param [Hash] args
@@ -153,9 +151,11 @@ module Ramaze
     # Convert the final output of Gestalt to a string.
     # This method has the following alias: "to_str".
     #
+    # @return [String]
+    #
     def to_s
       @out.join
     end
     alias to_str to_s
-  end
-end
+  end # Gestalt
+end # Ramaze

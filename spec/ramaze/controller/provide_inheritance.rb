@@ -1,5 +1,5 @@
 #          Copyright (c) 2009 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 require File.expand_path('../../../../spec/helper', __FILE__)
 
@@ -22,11 +22,6 @@ class SpecControllerInheritedAnother < SpecControllerInheritedOther
   def index; "%p Another is haml. Inherit from Other"; end
 end
 
-class SpecControllerInheritedYetAnother < SpecControllerInheritedAnother
-  Ramaze.node('/yet_another').engine(:Maruku)
-  def index; "Yet Another is Maruku. Inherited but overriden"; end
-end
-
 describe 'Ramaze::Controller#self.inherited' do
   behaves_like :rack_test
 
@@ -41,10 +36,5 @@ describe 'Ramaze::Controller#self.inherited' do
   should "inherit provide from parent controller" do
     get('/another').body.should ==
       "<p>Another is haml. Inherit from Other</p>\n"
-  end
-
-  should "be able to override inherited provide" do
-    get('/yet_another').body.should ==
-      "<p>Yet Another is Maruku. Inherited but overriden</p>"
   end
 end

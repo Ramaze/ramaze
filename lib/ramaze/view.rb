@@ -1,5 +1,5 @@
 #          Copyright (c) 2009 Michael Fellinger m.fellinger@gmail.com
-# All files in this distribution are subject to the terms of the Ruby license.
+# All files in this distribution are subject to the terms of the MIT license.
 
 module Ramaze
   View = Innate::View
@@ -7,21 +7,14 @@ module Ramaze
   # This is a container module for wrappers of templating engines and handles
   # lazy requiring of needed engines.
   module View
-
     # Combine Kernel#autoload and Innate::View::register
-
     def self.auto_register(name, *exts)
       autoload(name, "ramaze/view/#{name}".downcase)
       register("Innate::View::#{name}", *exts)
     end
 
-    # TODO:
-    # * markaby - though we should advertise remarkably instead
-    # * XSLT    - this one is just crazy, someone up for the task?
-
     # Engines provided by Innate are:
     # ERB, Etanni, None
-
     auto_register :Erector,    :erector
     auto_register :Erubis,     :erubis,  :rhtml
     auto_register :Ezamar,     :zmr
@@ -29,15 +22,14 @@ module Ramaze
     auto_register :Haml,       :haml
     auto_register :Less,       :lss, :less
     auto_register :Liquid,     :liquid
-	  auto_register :Lokar,      :lok
-    auto_register :Maruku,     :mkd, :md
+    auto_register :Lokar,      :lok
     auto_register :Nagoro,     :nag
-    auto_register :RedCloth,   :redcloth
     auto_register :Remarkably, :rem
     auto_register :Sass,       :sass
+    auto_register :Slim,       :slim
     auto_register :Tagz,       :tagz
     auto_register :Tenjin,     :rbhtml, :tenjin
     auto_register :Slippers,   :st
-    auto_register :Mustache,   :mt
-  end
-end
+    auto_register :Mustache,   :mustache, :mt
+  end # View
+end # Ramaze
