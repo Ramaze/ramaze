@@ -40,9 +40,10 @@ module Ramaze
       # Just sends all messages received to ::Syslog
       # We simply return if the log was closed for some reason, this behavior
       # was copied from Informer.  We do not handle levels here. This will
-      # be done by te syslog daemon based on it's configuration.
+      # be done by the syslog daemon based on it's configuration.
       def log(tag, *messages)
         return if !::Syslog.opened?
+        messages = messages.map {|m| m.gsub(/(%[^m])/,'%\1')}
         ::Syslog.send(tag, *messages)
       end
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #          Copyright (c) 2008 rob@rebeltechnologies.nl
 # All files in this distribution are subject to the terms of the Ruby license.
 
@@ -38,7 +39,7 @@ describe 'Syslog' do
     # stderr to the pipe. Then we open the logging using LOG_PERROR, so all
     # log messages are written to stderror.  In the parent we read the messages
     # from the pipe and compare them to what we expected.
-	def test_log_msg( type, priority, msg )
+	def test_log_msg( type, priority, msg, expected=msg )
 		logpipe = IO::pipe
 		child = fork {
 			logpipe[0].close
@@ -52,7 +53,7 @@ describe 'Syslog' do
 		logpipe[1].close
 		Process.waitpid(child)
 
-		logpipe[0].gets.should == "ramaze_syslog_test[#{child}]: #{msg}\n"
+		logpipe[0].gets.should == "ramaze_syslog_test[#{child}]: #{expected}\n"
 	end
 
 	it 'should handle debug' do
@@ -69,5 +70,8 @@ describe 'Syslog' do
 	end
 	it 'should handle error' do
 		test_log_msg :direct, :error, 'Hello Error World!'
+	end
+	it 'should escape % sequences which trigger sprintf in syslog(3) ' do
+		test_log_msg :direct, :info, "Hello Cruel |évil| 戈 REAL %s World"
 	end
 end
