@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #          Copyright (c) 2008 rob@rebeltechnologies.nl
 # All files in this distribution are subject to the terms of the MIT license.
 
@@ -75,5 +76,8 @@ describe 'Syslog' do
 	end
 	it 'should handle error' do
 		test_log_msg :direct, :error, 'Hello Error World!'
+	end
+	it 'should escape % sequences' do
+		test_log_msg :direct, :info, "Hello Cruel |évil| 戈 REAL %s World"
 	end
 end
