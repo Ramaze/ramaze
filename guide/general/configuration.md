@@ -133,7 +133,7 @@ value, etc:
 
 While Ramaze is a very flexible framework it requires some basic information
 about the location of your views, layouts and so on. Ramaze does not
-automatically tries to locate these but instead uses a set of defined locations
+automatically try to locate these but instead uses a set of defined locations
 to look for. These paths are set using ``Ramaze::Optioned`` and can be found in
 the following options:
 
