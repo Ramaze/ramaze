@@ -39,7 +39,7 @@ describe 'Ramaze::View::Slim' do
   end
 
   should 'render an external template with variables' do
-    got = get('/external')
+    got = get('/external_vars')
 
     got.status.should          == 200
     got['Content-Type'].should == 'text/html'
