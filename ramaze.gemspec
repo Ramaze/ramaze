@@ -34,6 +34,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rack-contrib'
   s.add_development_dependency 'rack-test'
   s.add_development_dependency 'redis'
+  s.add_development_dependency 'moneta'
   s.add_development_dependency 'sass'
   s.add_development_dependency 'sequel'
   s.add_development_dependency 'slim'

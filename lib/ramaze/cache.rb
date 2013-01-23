@@ -12,6 +12,7 @@ module Ramaze
     autoload :MemCache,      'ramaze/cache/memcache'
     autoload :Sequel,        'ramaze/cache/sequel'
     autoload :Redis,         'ramaze/cache/redis'
+    autoload :Moneta,        'ramaze/cache/moneta'
 
     ##
     # Overwrites {Innate::Cache#initialize} to make cache classes application
