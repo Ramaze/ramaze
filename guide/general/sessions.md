@@ -138,6 +138,12 @@ To make it easier to display flash based messages you can use
 {Ramaze::Helper::Flash#flashbox}. You can load this helper by calling
 ``helper(:flash)`` inside your controller.
 
+Displaying the flashbox is then as simple as :
+
+    #{flashbox}
+
+anywhere in your layouts or views.
+
 To change the markup of the flashbox' HTML you can use the following trait
 inside your controller:
 
@@ -166,3 +172,39 @@ displayed because the flash data isn't there yet. As soon as the client visits
 "Hello, Ramaze!" would be displayed. Refreshing the page would clear the flash
 data and the message would no longer be displayed until the client visits
 /set\_message again.
+
+In the above example, the content of the flash is returned by a method in the
+controller. However, the most common scenario is to address the flash object
+directly in the layouts or viems. You can display flash data (in your
+layout for instance), just like any other variable :
+
+    #{flash[:message]}
+
+and you can use any key in flash, and display in a view or in a layout
+afterwards (no just :message of course).
+
+For instance, let's say you want to display information boxes at the top of your
+layout page. This information is displayed when an operation succeeds, fails, or
+when you just want to inform the user. You can easily take advantage of your key
+values and use them as css selectors like that :
+
+    ....
+    <div>
+      <!-- flash -->
+      <?r [:success, :error, :info].each do |type| ?>
+        <?r if flash[type] ?>
+
+          <div class="alert alert-block alert-#{type} fade in">
+            <a class="close" data-dismiss="alert" href="#">×</a>
+            <h4 class="alert-heading">#{ type.capitalize }</h4>
+            #{flash[type]}
+          </div>
+
+        <?r end ?>
+      <?r end ?>
+
+      #{@content}
+
+    </div>
+    ...
+
