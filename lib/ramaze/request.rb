@@ -3,7 +3,7 @@
 module Ramaze
   ##
   # The purpose of this class is to act as a simple wrapper for Rack::Request
-  # and provide some convinient methods for our own use.
+  # and provide some convenient methods for our own use.
   class Request < Innate::Request
     ##
     # you can access the original @request via this method_missing,
@@ -105,7 +105,7 @@ module Ramaze
     end
     alias inspect to_s
 
-    # Pretty prints current action with parameters, cookies and enviroment
+    # Pretty prints current action with parameters, cookies and environment
     # variables.
     def pretty_print(pp)
       pp.object_group(self) do

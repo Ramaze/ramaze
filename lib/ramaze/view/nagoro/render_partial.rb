@@ -5,7 +5,7 @@ module Nagoro
     # Pipe that transforms <render /> tags.
     #
     # the src parameter in the render tag will be used as first parameter to
-    # render_partial, all other paramters are passed on as +variables+.
+    # render_partial, all other parameters are passed on as +variables+.
     #
     # Example calling render_partial('hello'):
     #   <render src="hello" />

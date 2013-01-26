@@ -10,7 +10,7 @@ module Ramaze
     ##
     # Cache driver for the Memcache storage engine. Memcache is a key/value
     # store that's extremely useful for caching data such as views or API
-    # responses. More inforamtion about Memcache can be found on it's website:
+    # responses. More information about Memcache can be found on it's website:
     # <http://memcached.org/>.
     #
     # Note that this cache driver requires the Dalli gem rather than Memcache
@@ -21,7 +21,7 @@ module Ramaze
     # operate but you won't get the nice speed boost.
     #
     # This driver works similar to Ramaze::Cache::Sequel in that it allows you
-    # to specify instance specific options uisng the using() method:
+    # to specify instance specific options using the using() method:
     #
     #     Ramaze::Cache.options.session = Ramaze::Cache::MemCache.using(
     #       :compression => false

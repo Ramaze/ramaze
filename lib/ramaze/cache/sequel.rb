@@ -108,13 +108,13 @@ module Ramaze
         #  should be set to an integer representing the number of seconds before
         #  a cache item becomes invalidated.
         # @option options [TrueClass] :display_warnings When this option is set
-        #  to true, failure to serialiaze or deserialize cache items will produce
+        #  to true, failure to serialize or de-serialize cache items will produce
         #  a warning in the Ramaze log. This option is set to false by default.
         #  Please note that certain objects (for instance Procs) cannot be
         #  serialized by ruby and therefore cannot be cached by this cache class.
         #  Setting this option to true is a good way to find out if the stuff you
         #  are trying to cache is affected by this. Failure to
-        #  serialize/deserialize a cache item will never raise an exception, the
+        #  serialize/de-serialize a cache item will never raise an exception, the
         #  item will just remain uncached.
         # @return [Object]
         #

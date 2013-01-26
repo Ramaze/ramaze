@@ -2,7 +2,7 @@ module Ramaze
   module Helper
     ##
     # Helper module for handling file uploads. File uploads are mostly handled
-    # by Rack, but this helper adds some conveniance methods for handling
+    # by Rack, but this helper adds some convenience methods for handling
     # and saving the uploaded files.
     #
     # @example

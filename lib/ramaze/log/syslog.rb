@@ -19,7 +19,7 @@ module Ramaze
       ALIASES = {:dev => :debug, :warn => :warning, :error => :err}
 
       ##
-      # Open the syslog library, if it is allready open, we reopen it using the
+      # Open the syslog library, if it is already open, we reopen it using the
       # new argument list. The argument list is passed on to the Syslog library
       # so please check that, and man syslog for detailed information.
       #

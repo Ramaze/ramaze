@@ -7,7 +7,7 @@ module Ramaze
     # Provides an call/answer mechanism, this is useful for example in a
     # login-system.
     #
-    # It is basically good to redirect temporarly somewhere else without
+    # It is basically good to redirect temporarily somewhere else without
     # forgetting where you come from and offering a nice way to get back
     # to the last urls.
     #
