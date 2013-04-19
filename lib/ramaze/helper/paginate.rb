@@ -226,6 +226,11 @@ module Ramaze
 
           action = Current.action
           params = request.params.merge(@var.to_s => n)
+          params.keys.each do |p|
+            if params[p].is_a?(Array) and not p.end_with?('[]')
+              params["#{p}[]"] = params.delete(p)
+            end
+          end
           hash[:href] = action.node.r(action.path, params)
 
           g.a(hash){ text }

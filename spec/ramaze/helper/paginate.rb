@@ -32,6 +32,13 @@ class SpecHelperPaginateArray < Ramaze::Controller
     pager.each{|item| out << item }
     out.inspect
   end
+
+  def preserve_params
+    request.params['single'] = 'zero'
+    request.params['multiple'] = %w[ one two three ]
+    pager = paginate(ALPHA)
+    pager.navigation
+  end
 end
 
 describe Ramaze::Helper::Paginate do
@@ -273,6 +280,24 @@ describe Ramaze::Helper::Paginate do
       last = spans[1][:class]
       last.should == "TheLast Severely Disabled"
 
+    end
+
+    it 'preserves single value params' do
+      doc = Nokogiri::HTML(get("/array/preserve_params").body)
+      params = doc.search("//a").first[:href].split('?').last.split('&')
+      params.should.include 'single=zero'
+      params.should.not.include 'single[]'.escape(:cgi) + '=zero'
+    end
+
+    it 'preserves multi value params' do
+      doc = Nokogiri::HTML(get("/array/preserve_params").body)
+      params = doc.search("//a").first[:href].split('?').last.split('&')
+      params.should.not.include 'multiple=one'
+      params.should.not.include 'multiple=two'
+      params.should.not.include 'multiple=three'
+      params.should.include 'multiple[]'.escape(:cgi) + '=one'
+      params.should.include 'multiple[]'.escape(:cgi) + '=two'
+      params.should.include 'multiple[]'.escape(:cgi) + '=three'
     end
 
   end
