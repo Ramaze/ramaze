@@ -1,5 +1,6 @@
 require 'locale/tag'
 require 'locale'
+require 'yaml'
 
 module Ramaze
   module Helper
