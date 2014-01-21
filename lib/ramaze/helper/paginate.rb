@@ -196,6 +196,7 @@ module Ramaze
         # these methods are actually on the pager, but we def them here for
         # convenience (method_missing in helper is evil and even slower)
         def page_count  ; @pager.page_count  ; end
+        def all         ; @pager.all         ; end
         def each(&block); @pager.each(&block); end
         def first_page? ; @pager.first_page? ; end
         def prev_page   ; @pager.prev_page   ; end
@@ -276,12 +277,14 @@ module Ramaze
             page_count == @page
           end
 
-          def each(&block)
+          def all
             from = ((@page - 1) * @limit)
             to = from + @limit
+            @array[from...to] || []
+          end
 
-            a = @array[from...to] || []
-            a.each(&block)
+          def each(&block)
+            all.each(&block)
           end
 
           include Enumerable

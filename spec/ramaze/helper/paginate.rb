@@ -33,6 +33,11 @@ class SpecHelperPaginateArray < Ramaze::Controller
     out.inspect
   end
 
+  def all
+    pager = paginate(ALPHA)
+    pager.all.inspect
+  end
+
   def preserve_params
     request.params['single'] = 'zero'
     request.params['multiple'] = %w[ one two three ]
@@ -84,6 +89,11 @@ describe Ramaze::Helper::Paginate do
 
     it 'iterates over the items in the pager' do
       got = get('/array/iteration')
+      got.body.scan(/\w+/).should == SpecHelperPaginateArray::ALPHA.first(10)
+    end
+
+    it 'returns all the items in the pager range' do
+      got = get('/array/all')
       got.body.scan(/\w+/).should == SpecHelperPaginateArray::ALPHA.first(10)
     end
 
