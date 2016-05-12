@@ -69,11 +69,39 @@ module Ramaze
     end
 
     ##
-    # Workaround for Kernel#select to make <select></select> work.
+    # Workaround for @g.table in BlueForm using method/call.
+    # This is needed in order to use m = g.method("table") etc.
     #
-    # @param [Array] args Extra arguments that should be processed before
-    #  creating the select tag.
-    # @param [Proc] block
+    def table(*args, &block)
+      _gestalt_call_tag :table, args, &block
+    end
+
+    ##
+    # Workaround for @g.tr in BlueForm using method/call.
+    # This is needed in order to use m = g.method("tr") etc.
+    #
+    def tr(*args, &block)
+      _gestalt_call_tag :tr, args, &block
+    end
+
+    ##
+    # Workaround for @g.th in BlueForm using method/call.
+    # This is needed in order to use m = g.method("th") etc.
+    #
+    def th(*args, &block)
+      _gestalt_call_tag :th, args, &block
+    end
+
+    ##
+    # Workaround for @g.td in BlueForm using method/call.
+    # This is needed in order to use m = g.method("td") etc.
+    #
+    def td(*args, &block)
+      _gestalt_call_tag :td, args, &block
+    end
+
+    ##
+    # Workaround for Kernel#select to make <select></select> work.
     #
     def select(*args, &block)
       _gestalt_call_tag(:select, args, &block)
@@ -137,7 +165,7 @@ module Ramaze
     end
 
     ##
-    # Shortcut for building tags,
+    # Shortcut for building tags.
     #
     # @param [String] name
     # @param [Array] args
@@ -145,6 +173,15 @@ module Ramaze
     #
     def tag(name, *args, &block)
       _gestalt_call_tag(name.to_s, args, &block)
+    end
+
+		##
+    # A way to append text to the output of Gestalt.
+    #
+    # @param [String] text
+    #
+    def <<(str)
+      @out << str
     end
 
     ##
