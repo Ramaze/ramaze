@@ -797,7 +797,9 @@ module Ramaze
             when :button, :image, :reset, :submit
               args[:type] = type
               args[:name] = name unless args.has_key?(:name) || name.nil?
-              @g.input(args)
+              @input_wrapper.call do
+                @g.input(args)
+              end
 
             when :textarea
               args[:name] = name unless args.has_key?(:name) || name.nil?
