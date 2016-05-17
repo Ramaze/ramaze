@@ -1,0 +1,55 @@
+<p>
+  <?r if @database[:db] ?>
+    Congratulations, Ramaze is running fine and your database "#{@database[:db]}" is open on MySQL.<br/>
+    You can start working on your application.
+  <?r else ?>
+    Sorry, but your database isn't working properly.<br/>
+    The error message MySQL returned was:<br/>
+    &nbsp;&nbsp;#{@database[:error]}.
+  <?r end ?>
+</p>
+
+<p>
+    You can play around with this prototype by changing the following:
+</p>
+
+<ul>
+    <li>
+        <code>view/index.xhtml</code>: the content of this page.
+    </li>
+    <li>
+        <code>layout/default.xhtml</code>: the layout for this page.
+    </li>
+    <li>
+        <code>controller/main.rb</code>: the controller responsible for server this page.
+    </li>
+    <li>
+        <code>database.yml</code>: the database settings.
+    </li>
+</ul>
+
+<p>
+    For more information, check out <a href="http://ramaze.net">ramaze.net</a> and
+    <a href="http://ramaze.net/documentation/index.html">the documentation</a>.
+    <br />
+    You can also read the
+    <a href="http://doc.rubyists.com/ramaze%2binnate/">YARD documentation</a>
+    or browse around the <a href="https://github.com/ramaze/ramaze">Ramaze source code</a>.
+</p>
+
+<p>
+    For help with Ramaze, visit
+    <a href="irc://chat.freenode.net/ramaze">#ramaze on irc.freenode.net</a>.
+    <br />
+    You can use <a href="http://embed.mibbit.com/?server=irc.freenode.net&amp;channel=%23ramaze,%23ruby-lang&amp;forcePrompt=true">Mibbit</a>,
+    an AJAX based IRC client or
+    <a href="http://java.freenode.net/?channel=ramaze">
+        the official freenode irc java applet
+    </a>.
+</p>
+
+<p>
+    Feel free to post to the
+    <a href="https://groups.google.com/forum/#!forum/ramaze">Ramaze Google Group</a>, your
+    first mail has to go through moderation, so please be patient.
+</p>
