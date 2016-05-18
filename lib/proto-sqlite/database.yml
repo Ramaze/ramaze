@@ -1,0 +1,8 @@
+dev:
+  adapter: {adapter}
+  database: {dbname}
+
+live:
+  adapter: {adapter}
+  database: {dbname}
+
