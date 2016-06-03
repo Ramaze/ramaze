@@ -2,8 +2,7 @@
 # All files in this distribution are subject to the terms of the MIT license.
 
 require File.expand_path('../../../spec/helper', __FILE__)
-require 'rexml/document'
-require 'rexml/xpath'
+require 'nokogiri'
 
 class SpecError < Ramaze::Controller
   map '/'
@@ -40,15 +39,14 @@ describe 'Error handling' do
   Ramaze.options.mode = :dev
 
   it 'uses Rack::ShowException to display errors' do
-    got = get('/raises')
-    [got.status, got['Content-Type']].should == [500, 'text/html']
+    got = get('/raises', {}, {'HTTP_ACCEPT' => 'text/html'})
+    got.status.should == 500
+    got['Content-Type'].should == 'text/html'
 
-    # we use this xpath notation because otherwise rexml is really slow...
-    doc = REXML::Document.new(got.body)
-    REXML::XPath.first(doc, "/html/body/div[1]/h1").text.
-      should == "NameError at /raises"
-    REXML::XPath.first(doc, "/html/body/div[4]/p/code").text.
-      should == "Rack::ShowExceptions"
+    doc = Nokogiri::HTML(got.body)
+    doc.at("#summary").text.should.match(/NameError at \/raises/)
+    doc.at("#explanation").text.strip.should ==
+      "You're seeing this error because you use Rack::ShowExceptions."
   end
 
   it 'uses original action_missing when no action was found' do
@@ -78,11 +76,9 @@ describe 'Error handling' do
     got = get('/empty')
     [got.status, got['Content-Type']].should == [404, 'text/html']
 
-    # we use this xpath notation because otherwise rexml is really slow...
-    doc = REXML::Document.new(got.body)
-    REXML::XPath.first(doc, "/html/body/div[1]/h1").text.strip.
-      should == "Not Found"
-    REXML::XPath.first(doc, "/html/body/div[3]/p/code").text.
-      should == "Rack::ShowStatus"
+    doc = Nokogiri::HTML(got.body)
+    doc.at("#info").text.strip.should == "Not Found"
+    doc.at("#explanation").text.strip.should ==
+      "You're seeing this error because you use Rack::ShowStatus."
   end
 end

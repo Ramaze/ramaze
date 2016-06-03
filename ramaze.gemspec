@@ -1,10 +1,6 @@
-require File.expand_path('../lib/ramaze/version', __FILE__)
-
-path = File.expand_path('../', __FILE__)
-
 Gem::Specification.new do |s|
   s.name        = 'ramaze'
-  s.version     = Ramaze::VERSION
+  s.version     = '2012.12.08'
   s.date        = Time.now.strftime('%Y-%m-%d')
   s.authors     = ['Michael \'manveru\' Fellinger', 'Yorick Peterse']
   s.email       = ['m.fellinger@gmail.com', 'yorickpeterse@gmail.com']
@@ -13,7 +9,11 @@ Gem::Specification.new do |s|
   s.description = s.summary
 
   s.required_rubygems_version = '>= 1.3.5'
-  s.files                     = `cd #{path}; git ls-files`.split("\n").sort
+  s.files = (
+    Dir['{bin,examples,guide,lib,spec,tasks}/**/*'] |
+    %w[Gemfile Rakefile README.md ramaze.gemspec]
+  ).sort
+
   s.has_rdoc                  = 'yard'
   s.executables               = ['ramaze']
 
