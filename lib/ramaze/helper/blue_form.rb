@@ -697,57 +697,6 @@ module Ramaze
         end
 
         ##
-        # Method used for converting the results of the BlueForm helper to a
-        # human readable string. This isn't recommended for production because
-        # it requires much more time to generate the HTML output than to_s.
-        #
-        # @return [String] The formatted form output
-        #
-        def to_html
-          # Combine the sub-parts to form whole tags or whole in-between texts
-          parts = []
-          tag = ""
-          @g.out.each do |fragment|
-            case
-            when fragment[0] == '<'
-              if tag.empty?
-                tag << fragment
-              else
-                parts << tag
-                tag = fragment
-              end
-            when fragment[-1] == '>'
-              tag << fragment
-              parts << tag
-              tag = ""
-            else
-              tag << fragment
-            end # case
-          end
-          parts << tag if tag
-
-          # output the segments, but adjust the indentation
-          indent = 0
-          html = ""
-          parts.each do |part|
-            case
-            when part[0..1] == '</'
-              indent -= 1
-            end
-            html << "#{' '*indent}#{part}\n"%indent
-            case
-            when (part[0] == '<') && (part[-2..-1] == '/>')
-              # self terminating tag -- no change in indent
-            when (part[0] == '<') && (part[1] != '/')
-              indent += 1
-            end
-          end
-
-          # return the formatted string
-          return html
-        end
-
-        ##
         # Generate a URL.
         #
         # @param [String] label The text to display inside the label tag.
