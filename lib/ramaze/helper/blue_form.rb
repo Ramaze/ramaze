@@ -697,6 +697,17 @@ module Ramaze
         end
 
         ##
+        # Method used for converting the results of the BlueForm helper to a
+        # human readable string. This isn't recommended for production because
+        # it requires much more time to generate the HTML output than to_s.
+        #
+        # @return [String] The formatted form output
+        #
+        def to_html
+          @g.to_html
+        end
+
+        ##
         # Generate a URL.
         #
         # @param [String] label The text to display inside the label tag.
