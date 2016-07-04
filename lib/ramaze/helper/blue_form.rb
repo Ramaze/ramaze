@@ -224,7 +224,7 @@ module Ramaze
           @arrangement = options.delete(:arrangement)
           @arrangement = :paragraph if ([:table,:paragraph,:none].index(@arrangement)).nil?
           @form_args    = options.dup
-          @g            = Gestalt.new
+          @g            = Ramaze::Gestalt.new
         end
 
         ##
