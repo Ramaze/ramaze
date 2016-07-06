@@ -206,7 +206,8 @@ module Ramaze
       # Combine the sub-parts to form whole tags or whole in-between texts
       parts = []
       tag = ""
-      @out.each do |fragment|
+      @out.each do |frag|
+        fragment = String.new(frag)
         case
         when fragment[0] == '<'
           if tag.empty?
