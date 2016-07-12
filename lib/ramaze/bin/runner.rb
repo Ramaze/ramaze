@@ -34,7 +34,10 @@ Usage:
   ramaze [COMMAND] [OPTIONS]
 
 Example:
-  ramaze create blog
+  ramaze --help # this message
+  ramaze create -h # help for the create command
+  ramaze create blog # create a project named blog
+  ramaze create blog -a mysql2 -d blog_dev -u bloguser -p dFLaWp3uts97pFwcdz7 # same, but with database
       TXT
 
       ##
@@ -50,6 +53,7 @@ Example:
       #  ARGV by default.
       #
       def self.run(argv=ARGV)
+        help = false
         op = OptionParser.new do |opt|
           opt.banner         = Banner
           opt.summary_indent = '  '
@@ -65,9 +69,9 @@ Example:
             exit
           end
 
+          # Show the help message
           opt.on('-h', '--help', 'Shows this help message') do
-            puts op
-            exit
+            help = true
           end
         end
 
@@ -85,7 +89,12 @@ Example:
           cmd = Commands[cmd].new
           cmd.run(argv)
         else
-          abort 'The specified command is invalid'
+          if help
+            puts op
+            exit 
+          else
+            abort 'The specified command is invalid'
+          end
         end
       end
 
