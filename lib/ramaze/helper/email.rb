@@ -86,15 +86,17 @@ module Ramaze
           "Subject: #{subject}", "Message-Id: #{id}", '', message
         ].join(Email.options.newline)
 
-        # Send the Email
+        # Select the options in the proper order
         email_options = []
-
-        [:host, :port, :helo_domain, :username, :password, :auth_type].each do |k|
+        [:helo_domain, :username, :password, :auth_type].each do |k|
           email_options.push(Email.options[k])
         end
 
         begin
-          Net::SMTP.start(*email_options) do |smtp|
+          # Send the email--if STARTTLS is available at the server, it will be used
+          smtp = Net::SMTP.new(Email.options[:host], Email.options[:port])
+          smtp.enable_starttls_auto
+          smtp.start(*email_options) do
             smtp.send_message(
               email,
               Email.options.sender,
