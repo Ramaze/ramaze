@@ -8,11 +8,7 @@ class Controller < Ramaze::Controller
   engine :etanni
 end
 
-# Here you can require all your other controllers. Note that if you have multiple
-# controllers you might want to do something like the following:
-#
-#  Dir.glob('controller/*.rb').each do |controller|
-#    require(controller)
-#  end
-#
-require __DIR__('main')
+# Require all controllers in the controllers folder
+Dir.glob('controller/*.rb').each do |controller|
+  require("#{Ramaze.options.roots[0]}/#{controller}")
+end

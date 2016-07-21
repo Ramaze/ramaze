@@ -69,11 +69,39 @@ module Ramaze
     end
 
     ##
-    # Workaround for Kernel#select to make <select></select> work.
+    # Workaround for @g.table in BlueForm using method/call.
+    # This is needed in order to use m = g.method("table") etc.
     #
-    # @param [Array] args Extra arguments that should be processed before
-    #  creating the select tag.
-    # @param [Proc] block
+    def table(*args, &block)
+      _gestalt_call_tag :table, args, &block
+    end
+
+    ##
+    # Workaround for @g.tr in BlueForm using method/call.
+    # This is needed in order to use m = g.method("tr") etc.
+    #
+    def tr(*args, &block)
+      _gestalt_call_tag :tr, args, &block
+    end
+
+    ##
+    # Workaround for @g.th in BlueForm using method/call.
+    # This is needed in order to use m = g.method("th") etc.
+    #
+    def th(*args, &block)
+      _gestalt_call_tag :th, args, &block
+    end
+
+    ##
+    # Workaround for @g.td in BlueForm using method/call.
+    # This is needed in order to use m = g.method("td") etc.
+    #
+    def td(*args, &block)
+      _gestalt_call_tag :td, args, &block
+    end
+
+    ##
+    # Workaround for Kernel#select to make <select></select> work.
     #
     def select(*args, &block)
       _gestalt_call_tag(:select, args, &block)
@@ -137,7 +165,7 @@ module Ramaze
     end
 
     ##
-    # Shortcut for building tags,
+    # Shortcut for building tags.
     #
     # @param [String] name
     # @param [Array] args
@@ -145,6 +173,15 @@ module Ramaze
     #
     def tag(name, *args, &block)
       _gestalt_call_tag(name.to_s, args, &block)
+    end
+
+		##
+    # A way to append text to the output of Gestalt.
+    #
+    # @param [String] text
+    #
+    def <<(str)
+      @out << str
     end
 
     ##
@@ -157,5 +194,56 @@ module Ramaze
       @out.join
     end
     alias to_str to_s
+
+    ##
+    # Method used for converting the results of the Gestalt helper to a
+    # human readable string. This isn't recommended for production because
+    # it requires much more time to generate the HTML output than to_s.
+    #
+    # @return [String] The formatted form output
+    #
+    def to_html
+      # Combine the sub-parts to form whole tags or whole in-between texts
+      parts = []
+      tag = ""
+      @out.each do |frag|
+        fragment = String.new(frag)
+        case
+        when fragment[0] == '<'
+          if tag.empty?
+            tag << fragment
+          else
+            parts << tag
+            tag = fragment
+          end
+        when fragment[-1] == '>'
+          tag << fragment
+          parts << tag
+          tag = ""
+        else
+          tag << fragment
+        end # case
+      end
+      parts << tag if tag
+      # output the segments, but adjust the indentation
+      indent = 0
+      html = ""
+      parts.each do |part|
+        case
+        when part[0..1] == '</'
+          indent -= 1
+        end
+        html << "#{' '*indent}#{part}\n"%indent
+        case
+        when (part[0] == '<') && (part[-2..-1] == '/>')
+          # self terminating tag -- no change in indent
+        when (part[0] == '<') && (part[1] != '/')
+          indent += 1
+        end
+      end
+      # return the formatted string
+      return html
+    end # to_html
+    
   end # Gestalt
 end # Ramaze

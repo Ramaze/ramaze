@@ -1,0 +1,34 @@
+dev:
+  adapter: {adapter}
+  host: {server}
+  database: {dbname}
+  username: {username}
+  password: {password}
+  encoding: utf8
+  reconnect: false
+  port: 3306
+
+# Other Options (See https://github.com/brianmario/mysql2/blob/master/README.md)
+#  socket: '/path/to/mysql.sock'
+#  flags: REMEMBER_OPTIONS | LONG_PASSWORD | LONG_FLAG | TRANSACTIONS | PROTOCOL_41 | SECURE_CONNECTION | MULTI_STATEMENTS
+#  encoding: 'utf8'
+#  read_timeout: seconds
+#  write_timeout: seconds
+#  connect_timeout: seconds
+#  reconnect: true/false
+#  local_infile: true/false
+#  secure_auth: true/false
+#  default_file: '/path/to/my.cfg'
+#  default_group: 'my.cfg section'
+#  init_command => sql
+
+live:
+  adapter: {adapter}
+  host: {server}
+  database: {dbname}
+  username: {username}
+  password: {password}
+  encoding: utf8
+  reconnect: false
+  port: 3306
+
