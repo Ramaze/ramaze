@@ -18,6 +18,10 @@ describe Ramaze::Helper::Gravatar do
     gravatar(@email).should == uri
   end
 
+  it 'handles nil emails properly and turns it into a hashed part of the uri' do
+    gravatar(nil).should == URI("http://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e")
+  end
+
   it 'takes :size option' do
     gravatar(@email, :size => 100).should == uri('?size=100')
   end
